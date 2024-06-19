@@ -1,0 +1,31 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: url('../../public/static.gif') repeat;
+    background-size: 250px 250px; 
+}
+
+.blog {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.925);
+}
+
+.blog-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.blog-menu li {
+    margin: 10px 0;
+}
+
+.blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 20px;
+}

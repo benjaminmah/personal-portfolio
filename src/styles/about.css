@@ -27,7 +27,11 @@ html, body {
     text-align: left; 
     padding-top: 120px;
     font-family: 'Gaegu', sans-serif;
-    padding-bottom: 70px;
+    padding-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 .about-me h1, .about-me p {
@@ -68,6 +72,7 @@ html, body {
     align-items: center;
     max-width: 800px;
     margin-bottom: 40px;
+    margin-top: 20px;
 }
 
 .about-image {
@@ -180,13 +185,41 @@ html, body {
     }
 }
 
-
 .about-me a {
     text-decoration: none;
-    color: #29ac4a;
+    color: #083ede;
     transition: color 0.3s ease
 }
 
 .about-me a:hover {
-    color: #33d35b; 
+    color: #5875cc;
+}
+
+/* Media query to stack images below text on smaller screens */
+@media (max-width: 768px) {
+    .about-container, .experiences-container, .projects-container {
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .about-image, .experiences-image, .projects-image {
+        margin: 15px auto 0;
+    }
+
+    .about-image, .experiences-image, .projects-image {
+        width: 150px; 
+        height: 150px; 
+    }
+
+    .experiences-container {
+        flex-direction: column;
+    }
+
+    .experiences {
+        order: 1;
+    }
+
+    .experiences-image {
+        order: 2;
+    }
 }
