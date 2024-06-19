@@ -15,8 +15,11 @@ const BlogPost = () => {
     }, [id]);
 
     return (
-        <div className="blog-post">
-            <ReactMarkdown>{content}</ReactMarkdown>
+        <div className="main-content">
+            <div className="sticky-bar"></div>
+            <div className="blog-post">
+                <ReactMarkdown>{content}</ReactMarkdown>
+            </div>
         </div>
     );
 }

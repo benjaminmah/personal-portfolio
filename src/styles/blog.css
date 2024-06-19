@@ -1,22 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu&display=swap');
+
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
     width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     background: url('../../public/static.gif') repeat;
-    background-size: 250px 250px; 
+    background-size: 250px 250px;
+    font-family: 'Gaegu', sans-serif;
+}
+
+.sticky-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 130px;
+    background: linear-gradient(rgba(255, 255, 255, 0.925), rgba(255, 255, 255, 0.925)), url('../../public/static.gif') repeat;
+    z-index: 10;
+}
+
+.main-content {
+    position: relative;
+    top: 130px; /* Height of the sticky bar */
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.925);
+    min-height: calc(100vh - 130px); /* Full height minus the sticky bar height */
 }
 
 .blog {
     text-align: center;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.925);
 }
 
 .blog-menu {
     list-style: none;
     padding: 0;
+    font-family: 'Gaegu', sans-serif;
 }
 
 .blog-menu li {
@@ -28,4 +49,8 @@ html, body {
     margin: 0 auto;
     text-align: left;
     padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Gaegu', sans-serif;
 }

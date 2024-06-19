@@ -1,4 +1,7 @@
-[
-    { "id": "post1", "title": "First Blog Post" },
-    { "id": "post2", "title": "Second Blog Post" }
-]
+# First Blog Post
+
+This is the content of the first blog post.
+
+## Subtitle
+
+More content here.
