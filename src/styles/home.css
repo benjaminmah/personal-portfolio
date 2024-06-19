@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: url('../../public/static.gif') repeat;
+    background-size: 150px 150px;
+}
+
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(241, 241, 241, 0.932); /* Overlay to soften the background */
+    text-align: center;
+    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.home-icon {
+    position: absolute;
+    top: 30px;
+    left: 50px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.home-icon img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.home-icon img {
+    animation: frog-animation 1s steps(2) infinite;
+}
+
+@keyframes frog-animation {
+    0% {
+        content: url('../../public/icons/frog1.png');
+    }
+    50% {
+        content: url('../../public/icons/frog2.png');
+    }
+    100% {
+        content: url('../../public/icons/frog1.png');
+    }
+}
+
+.home-icon span {
+    font-family: 'Gaegu', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: black;
+}
+
+.home h1 {
+    font-size: 4rem;
+    margin-bottom: -15px; 
+    line-height: 1.2;
+    font-family: 'Gaegu', sans-serif;
+    font-weight: 900; 
+}
+
+.blurb {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    color: #555;
+    max-width: 600px;
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Gaegu', sans-serif;
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+.music-player {
+    cursor: pointer;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 5px;
+}
+
+.restart-player {
+    cursor: pointer;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: -5px;
+}
+
+.music-player .music-icon {
+    animation: play-animation 0.5s steps(2) infinite;
+}
+
+.music-player.playing .music-icon {
+    animation: pause-animation 0.5s steps(2) infinite;
+}
+
+.restart-player .restart-icon {
+    animation: restart-animation 0.5s steps(2) infinite;
+}
+
+.music-icon, .restart-icon {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes play-animation {
+    0% {
+        content: url('../../public/icons/play1.png');
+    }
+    50% {
+        content: url('../../public/icons/play2.png');
+    }
+    100% {
+        content: url('../../public/icons/play1.png');
+    }
+}
+
+@keyframes pause-animation {
+    0% {
+        content: url('../../public/icons/pause1.png');
+    }
+    50% {
+        content: url('../../public/icons/pause2.png');
+    }
+    100% {
+        content: url('../../public/icons/pause1.png');
+    }
+}
+
+@keyframes restart-animation {
+    0% {
+        content: url('../../public/icons/restart1.png');
+    }
+    50% {
+        content: url('../../public/icons/restart2.png');
+    }
+    100% {
+        content: url('../../public/icons/restart1.png');
+    }
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+nav a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: black;
+    font-family: 'Gaegu', sans-serif;
+    font-weight: 600;
+    transition: color 0.3s ease
+}
+
+nav a:hover {
+    color: rgb(168, 168, 168);
+}

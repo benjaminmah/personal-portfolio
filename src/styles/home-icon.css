@@ -1,0 +1,43 @@
+.home-icon-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 1000; 
+}
+
+.home-icon {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black; 
+    white-space: nowrap; 
+}
+
+.home-icon img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    animation: frog-animation 1s steps(2) infinite;
+}
+
+.home-icon span {
+    font-family: 'Gaegu', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: inline-block; 
+    white-space: nowrap;
+}
+
+@keyframes frog-animation {
+    0% {
+        content: url('../../public/icons/frog1.png');
+    }
+    50% {
+        content: url('../../public/icons/frog2.png');
+    }
+    100% {
+        content: url('../../public/icons/frog1.png');
+    }
+}
