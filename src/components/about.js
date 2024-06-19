@@ -39,13 +39,13 @@ const About = () => {
                     <p>here are a few of my favourites:</p>
                     <ul>
                         <li>
-                            <p><strong>accent style transfer (github repo, paper):</strong> researched a new method of style transfer using CNNs (results were surprising!)</p>
+                            <p><strong>accent style transfer (<a href="https://github.com/benjaminmah/accent-style-transfer" target="_blank" rel="noopener noreferrer">github repo</a>, <a href="/files/accent-style-transfer.pdf" target="_blank" rel="noopener noreferrer">paper</a>):</strong> researched a new method of style transfer using CNNs (results were surprising!)</p>
                         </li>
                         <li>
-                            <p><strong>kidney image segmentation (github repo, paper):</strong> used a feature pyramid network to segment vasculature in kidney ct scans</p>
+                            <p><strong>kidney image segmentation (<a href="https://github.com/benjaminmah/kidney-image-segmentation" target="_blank" rel="noopener noreferrer">github repo</a>, <a href="/files/kidney-image-segmentation.pdf" target="_blank" rel="noopener noreferrer">paper</a>):</strong> used a feature pyramid network to segment vasculature in kidney ct scans</p>
                         </li>
                         <li>
-                            <p><strong>dubu chatbot (github repo, demo):</strong> created a customizable chatbot based on user pdf uploads and tone selection</p>
+                            <p><strong>dubu chatbot (<a href="https://github.com/benjaminmah/dubu-chatbot" target="_blank" rel="noopener noreferrer">github repo</a>, <a href="https://www.youtube.com/watch?v=aZ_y1hcKdSA" target="_blank" rel="noopener noreferrer">demo</a>):</strong> created a customizable chatbot based on user pdf uploads and tone selection</p>
                         </li>
                     </ul>
                 </div>
