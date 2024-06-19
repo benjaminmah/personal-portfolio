@@ -123,7 +123,7 @@ html, body {
 .sticky-bar {
     position: fixed;
     top: 0;
-    width: 98%;
+    width: 1vw;
     height: 130px; 
     background: linear-gradient(rgba(255, 255, 255, 0.925), rgba(255, 255, 255, 0.925)), url('../../public/static.gif') repeat;
     z-index: 10;
