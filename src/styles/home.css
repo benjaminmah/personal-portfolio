@@ -72,7 +72,7 @@ html, body {
 
 .blurb {
     font-size: 1.2rem;
-    margin-bottom: 30px;
+    margin-bottom: -20px;
     line-height: 1.5;
     color: #555;
     max-width: 600px;
@@ -154,6 +154,18 @@ html, body {
     100% {
         content: url('../../public/icons/restart1.png');
     }
+}
+
+.blurb2 {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    color: #555;
+    max-width: 600px;
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Gaegu', sans-serif;
+    font-weight: 400;
 }
 
 nav {
