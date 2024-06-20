@@ -23,7 +23,7 @@ const Contact = () => {
                     <img src={`${baseUrl}/icons/soundcloud1.png`} alt="SoundCloud" className="soundcloud-icon" />
                 </a>
             </div>
-            <p>(ps my email address is benjaminmah.bm@gmail.com)</p>
+            <p>(p.s. my email address is benjaminmah.bm@gmail.com)</p>
         </div>
     );
 }
