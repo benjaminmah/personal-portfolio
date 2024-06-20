@@ -13,13 +13,19 @@ html, body {
     background-color: rgba(255, 255, 255, 0.925); /* Ensure this matches .main-content background */
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 .main-content {
-    position: relative;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.925);
-    min-height: 100vh;
+    min-height: 100vh; 
+    flex: 1; 
     box-sizing: border-box;
 }
+
 
 .blog {
     padding-top: 120px;
