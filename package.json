@@ -1,6 +1,6 @@
 {
   "name": "personal-portfolio",
-  "homepage": "https://benjaminmah.github.io/personal-portfolio"
+  "homepage": "https://benjaminmah.github.io/personal-portfolio",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
