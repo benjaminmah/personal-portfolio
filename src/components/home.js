@@ -14,10 +14,10 @@ const Home = () => {
             <p className="blurb">
                 (care for some music?)
                 <span className={`music-player ${isPlaying ? 'playing' : ''}`} onClick={togglePlayPause}>
-                    <img src={isPlaying ? '/icons/pause1.png' : '/icons/play1.png'} alt="Music Player" className="music-icon" />
+                    <img src={isPlaying ? `${baseUrl}/icons/pause1.png` : `${baseUrl}/icons/play1.png`} alt="Music Player" className="music-icon" />
                 </span>
                 <span className="restart-player" onClick={restart}>
-                    <img src="/icons/restart1.png" alt="Restart Player" className="restart-icon" />
+                    <img src={`${baseUrl}/icons/restart1.png`} alt="Restart Player" className="restart-icon" />
                 </span>
             </p>
             <nav>
