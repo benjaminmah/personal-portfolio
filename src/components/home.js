@@ -20,6 +20,7 @@ const Home = () => {
                     <img src={`${baseUrl}/icons/restart1.png`} alt="Restart Player" className="restart-icon" />
                 </span>
             </p>
+            <p className="blurb2">cheesin' - cautious clay</p>
             <nav>
                 <Link to="/about">about</Link>
                 <Link to="/blog">blog</Link>
