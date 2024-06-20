@@ -6,6 +6,7 @@ import '../styles/home.css';
 
 const Home = () => {
     const { isPlaying, togglePlayPause, restart } = useMusicPlayer();
+    const baseUrl = process.env.PUBLIC_URL || '';
 
     return (
         <div className="home">
@@ -23,7 +24,7 @@ const Home = () => {
                 <Link to="/about">about</Link>
                 <Link to="/blog">blog</Link>
                 <Link to="/contact">contact</Link>
-                <a href="/files/Benjamin-Mah-Resume.pdf" target="_blank" rel="noopener noreferrer">resume</a>
+                <a href={`${baseUrl}/files/Benjamin-Mah-Resume.pdf`} target="_blank" rel="noopener noreferrer">resume</a>
             </nav>
         </div>
     );

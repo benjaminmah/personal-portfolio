@@ -8,7 +8,8 @@ const BlogPost = () => {
     const [content, setContent] = useState('');
 
     useEffect(() => {
-        fetch(`/blog/${id}.md`)
+        const baseUrl = process.env.PUBLIC_URL || '';
+        fetch(`${baseUrl}/blog/${id}.md`)
             .then(response => response.text())
             .then(text => setContent(text))
             .catch(error => console.error('Error fetching the blog post:', error));

@@ -4,7 +4,8 @@ const MusicPlayerContext = createContext();
 
 export const MusicPlayerProvider = ({ children }) => {
     const [isPlaying, setIsPlaying] = useState(false);
-    const audioRef = useRef(new Audio('/easy.mp3'));
+    const baseUrl = process.env.PUBLIC_URL || '';
+    const audioRef = useRef(new Audio(`${baseUrl}/easy.mp3`));
 
     useEffect(() => {
         const audio = audioRef.current;

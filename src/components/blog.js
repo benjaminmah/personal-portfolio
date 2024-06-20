@@ -6,7 +6,8 @@ const Blog = () => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        fetch('/blog/posts.json')
+        const baseUrl = process.env.PUBLIC_URL || '';
+        fetch(`${baseUrl}/blog/posts.json`)
             .then(response => response.json())
             .then(data => setPosts(data))
             .catch(error => console.error('Error fetching the blog posts:', error));
