@@ -8,6 +8,13 @@ export const MusicPlayerProvider = ({ children }) => {
 
     useEffect(() => {
         const audio = audioRef.current;
+
+        const handleEnded = () => {
+            setIsPlaying(false);
+        };
+
+        audio.addEventListener('ended', handleEnded);
+
         if (isPlaying) {
             audio.play().catch(error => console.log('Error playing audio:', error));
         } else {
@@ -15,6 +22,7 @@ export const MusicPlayerProvider = ({ children }) => {
         }
 
         return () => {
+            audio.removeEventListener('ended', handleEnded);
             audio.pause();
         };
     }, [isPlaying]);

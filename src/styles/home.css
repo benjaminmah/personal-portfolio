@@ -174,3 +174,10 @@ nav a {
 nav a:hover {
     color: rgb(168, 168, 168);
 }
+
+
+@media (max-width: 400px) {
+    .home h1 {
+        font-size: 2.5rem;
+    }
+}

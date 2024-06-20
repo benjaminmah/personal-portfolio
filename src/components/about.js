@@ -4,7 +4,6 @@ import '../styles/about.css';
 const About = () => {
     return (
         <div className="about-me">
-            <div className="sticky-bar"></div> 
             <div className="about-container">
                 <div className="about-text">
                     <h1>about me</h1>

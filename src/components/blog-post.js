@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import '../styles/blog.css';
 
@@ -16,9 +16,11 @@ const BlogPost = () => {
 
     return (
         <div className="main-content">
-            <div className="sticky-bar"></div>
-            <div className="blog-post">
-                <ReactMarkdown>{content}</ReactMarkdown>
+            <div className="blog-post-container">
+                <Link to="/blog" className="back-button">&lt; back</Link>
+                <div className="blog-post">
+                    <ReactMarkdown>{content}</ReactMarkdown>
+                </div>
             </div>
         </div>
     );

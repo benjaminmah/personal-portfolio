@@ -14,7 +14,6 @@ const Blog = () => {
 
     return (
         <div className="main-content">
-            <div className="sticky-bar"></div>
             <div className="blog">
                 <h1>blog</h1>
                 <ul className="blog-menu">
