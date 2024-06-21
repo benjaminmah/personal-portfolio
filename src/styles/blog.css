@@ -93,9 +93,14 @@ h3, h4, h5, p {
     font-size: 1.2rem;
 }
 
+h3 {
+    margin-top: -25px;
+    color: #676767;
+}
+
 h6 {
     font-size: 1.2rem;
-    margin-top: -15px;
+    margin-top: -17px;
     margin-bottom: 1px;
     color: rgb(119, 119, 119);
 }
