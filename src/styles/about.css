@@ -178,7 +178,7 @@ html, body {
     }
 }
 
-.about-me a {
+.about-me .projects a {
     text-decoration: none;
     color: #083ede;
     transition: color 0.3s ease
@@ -215,4 +215,45 @@ html, body {
     .experiences-image {
         order: 2;
     }
+}
+
+
+.mozilla {
+    text-decoration: none;
+    color: #E66000;
+    transition: color 0.3s ease
+}
+
+.about-me .mozilla:hover {
+    color: #f19c5f;
+}
+
+.cohere {
+    text-decoration: none;
+    color: #355146;
+    transition: color 0.3s ease
+}
+
+.about-me .cohere:hover {
+    color: #7d8c86
+}
+
+.rbc {
+    text-decoration: none;
+    color: #0059b3;
+    transition: color 0.3s ease
+}
+
+.about-me .rbc:hover {
+    color: #709dca;
+}
+
+.hatchery {
+    text-decoration: none;
+    color: #318888;
+    transition: color 0.3s ease
+}
+
+.about-me .hatchery:hover {
+    color: #8eb9b9;
 }

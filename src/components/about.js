@@ -7,8 +7,8 @@ const About = () => {
             <div className="about-container">
                 <div className="about-text">
                     <h1>about me</h1>
-                    <p>hello! my name is Benjamin Mah and I'm a machine intelligence engineering student at the University of Toronto. I'm passionate about harnessing the potential of machine learning to create impactful solutions ...</p>
-                    <p>... but when I'm not on my computer, you can find me collecting records, producing music, or playing basketball :)</p>
+                    <p>hello! my name is Benjamin Mah and I'm a machine intelligence engineering student at the University of Toronto. I'm passionate about harnessing the potential of machine learning to create impactful solutions, but when I'm not at my computer ...</p>
+                    <p>... you can find me collecting records, learning how to produce music, playing basketball (+ watching the raptors), or sleeping :)</p>
                 </div>
                 <img src="/icons/me1.png" alt="me" className="about-image" />
             </div>
@@ -16,17 +16,17 @@ const About = () => {
                 <img src="/icons/brain1.png" alt="me" className="experiences-image" />
                 <div className="experiences">
                     <h1>experiences</h1>
-                    <p>currently, I'm working at Mozilla (Firefox) as a machine learning intern on the ci and quality tools team!</p>
+                    <p>currently, I'm working at <strong><a href="https://www.mozilla.org" target="_blank" rel="noopener noreferrer" className="mozilla">Mozilla</a></strong> as a machine learning intern on the ci and quality tools team!</p>
                     <p>previously:</p>
                     <ul>
                         <li>
-                            <p>data specialist at Cohere</p>
+                            <p>data specialist at <strong><a href="https://www.cohere.com" target="_blank" rel="noopener noreferrer" className="cohere">Cohere</a></strong></p>
                         </li>
                         <li>
-                            <p>machine learning intern at RBC</p>
+                            <p>machine learning intern at <strong><a href="https://www.rbc.com" target="_blank" rel="noopener noreferrer" className="rbc">RBC</a></strong> </p>
                         </li>
                         <li>
-                            <p>co-founder of Flipdoor, backed by UofT Hatchery</p>
+                            <p>co-founder of Flipdoor, backed by <strong><a href="https://hatchery.engineering.utoronto.ca/" target="_blank" rel="noopener noreferrer" className="hatchery">UofT Hatchery</a></strong> </p>
                         </li>
                     </ul>
                 </div>
