@@ -41,8 +41,8 @@ body {
 .blog-menu-wrapper {
     display: flex;
     justify-content: center;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
 .blog-menu {
@@ -70,8 +70,6 @@ body {
     margin: 0 auto;
     text-align: left;
     padding-top: 120px;
-    padding-left: 50px;
-    padding-right: 50px;
 }
 
 .blog-post {
