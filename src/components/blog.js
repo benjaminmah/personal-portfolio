@@ -17,13 +17,16 @@ const Blog = () => {
         <div className="main-content">
             <div className="blog">
                 <h1>blog</h1>
-                <ul className="blog-menu">
-                    {posts.map((post, index) => (
-                        <li key={index}>
-                            <Link to={`/blog/${post.id}`}>{post.title}</Link>
-                        </li>
-                    ))}
-                </ul>
+                <h6>a simple collection of my thoughts</h6>
+                <div className="blog-menu-wrapper">
+                    <ul className="blog-menu">
+                        {posts.map((post, index) => (
+                            <li key={index}>
+                                <Link to={`/blog/${post.id}`}>{post.title}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
         </div>
     );
