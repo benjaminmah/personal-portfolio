@@ -2,7 +2,7 @@
 ### june 20, 2024
 If you're reading this, you've probably gone through most of my website.
 
-The main reason I decided to create this website was that my previous one was a [complete mess](https://github.com/benjaminmah/personal-website). The entire website was built using a single HTML and CSS file (which contained over 1500 lines), and overall was unresponsive and cluttered. While it met my design standards, the codebase felt haphazardly assembled.
+The main reason I decided to create this website was that my previous one was a complete mess. The entire website was built using a single HTML and CSS file (which contained over 1500 lines), and overall was unresponsive and cluttered. While it met my design standards, the codebase felt haphazardly assembled.
 
 So, I decided to start from scratch with a clear vision of what I wanted: minimalist and charming. I had three goals in mind:
 
