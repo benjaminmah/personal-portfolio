@@ -115,3 +115,10 @@ h6 {
     font-size: 18px;
     cursor: pointer;
 }
+
+.blog-post img {
+    display: block;
+    margin: 0 auto;
+    width: 50%;
+    height: auto;
+}
