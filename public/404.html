@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="refresh" content="0; URL=/" />
     <script>
-      window.location.href = "/" + window.location.hash.substr(1);
+      const fullPath = window.location.pathname + window.location.hash;
+      window.location.href = fullPath;
     </script>
   </head>
   <body></body>
