@@ -8,7 +8,7 @@ const About = () => {
                 <div className="about-text">
                     <h1>about me</h1>
                     <p>hello! my name is Benjamin Mah and I'm a machine intelligence engineering student at the University of Toronto. I'm passionate about harnessing the potential of machine learning to create impactful solutions, but when I'm not at my computer ...</p>
-                    <p>... you can find me collecting records, learning how to produce music, playing basketball (+ watching the raptors), or sleeping</p>
+                    <p>... you can find me collecting records, learning how to produce music, playing basketball, or sleeping</p>
                 </div>
                 <img src="/icons/me1.png" alt="me" className="about-image" />
             </div>
