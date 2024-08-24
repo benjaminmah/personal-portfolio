@@ -12,7 +12,7 @@ const Home = () => {
         <div className="home">
             <h1>hi! i'm benjamin</h1>
             <p className="blurb">
-                Jupiter - Matt Maltese
+                Beep-Boop, Beep-Boop - Meaningful Stone
                 <span className={`music-player ${isPlaying ? 'playing' : ''}`} onClick={togglePlayPause}>
                     <img src={isPlaying ? `${baseUrl}/icons/pause1.png` : `${baseUrl}/icons/play1.png`} alt="Music Player" className="music-icon" />
                 </span>
