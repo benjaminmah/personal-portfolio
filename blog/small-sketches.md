@@ -1,5 +1,5 @@
 # small sketches
-### ongoing
+### june 25, 2024
 impromptu sketches scanned with my iphone
 \
 ![catbus](../images/catbus.png)
