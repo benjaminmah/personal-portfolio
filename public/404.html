@@ -2,9 +2,8 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <script>
-      // Redirect the user back to the root ("/") and append the current path as a hash
-      window.location.replace("/#" + window.location.pathname);
+    <script type="text/javascript">
+      window.location.href = window.location.origin + window.location.pathname;
     </script>
   </head>
   <body>
