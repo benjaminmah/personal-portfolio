@@ -2,10 +2,12 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; URL=/" />
     <script>
-      window.location.href = "/";
+      // Redirect the user back to the root ("/") and append the current path as a hash
+      window.location.replace("/#" + window.location.pathname);
     </script>
   </head>
-  <body></body>
+  <body>
+    Redirecting...
+  </body>
 </html>
