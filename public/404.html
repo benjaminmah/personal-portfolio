@@ -4,17 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="refresh" content="0; URL=/" />
     <script>
-      const currentPath = window.location.pathname;
-      const currentHash = window.location.hash.substr(1);
-
-      if (currentHash) {
-        window.location.href = "/" + currentHash;
-      } else if (currentPath.startsWith("/blog/")) {
-        window.location.href = "/blog";
-      } else {
-        window.location.href = "/";
-      }
+      window.location.href = "/" + window.location.hash.substr(1);
     </script>
   </head>
   <body></body>
 </html>
+
