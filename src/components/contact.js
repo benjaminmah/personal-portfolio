@@ -19,9 +19,9 @@ const Contact = () => {
                 <a href="https://open.spotify.com/user/b8og4r9gr9jql088ihzux4lx7?si=8629db0f44894b29" target="_blank" rel="noopener noreferrer">
                     <img src={`${baseUrl}/icons/spotify1.png`} alt="Spotify" className="spotify-icon" />
                 </a>
-                <a href="https://soundcloud.com/hyounbin" target="_blank" rel="noopener noreferrer">
+                {/* <a href="https://soundcloud.com/hyounbin" target="_blank" rel="noopener noreferrer">
                     <img src={`${baseUrl}/icons/soundcloud1.png`} alt="SoundCloud" className="soundcloud-icon" />
-                </a>
+                </a> */}
             </div>
             {/* <p>(my email address is benjaminmah.bm@gmail.com)</p> */}
         </div>
