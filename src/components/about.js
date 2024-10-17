@@ -8,7 +8,7 @@ const About = () => {
                 <div className="about-text">
                     <h1>about me</h1>
                     <p>hello! my name is Benjamin Mah and I'm a machine intelligence engineering student at the University of Toronto. I'm passionate about harnessing the potential of machine learning to create impactful solutions, but when I'm not at my computer ...</p>
-                    <p>... you can find me collecting records, learning how to produce music, playing basketball, or sleeping</p>
+                    <p>... you can find me collecting records, playing and watching basketball, or sleeping</p>
                 </div>
                 <img src="/icons/me1.png" alt="me" className="about-image" />
             </div>
@@ -20,13 +20,19 @@ const About = () => {
                     <p>previously:</p>
                     <ul>
                         <li>
-                            <p>data specialist at <strong><a href="https://www.cohere.com" target="_blank" rel="noopener noreferrer" className="cohere">Cohere</a></strong></p>
+                            <p>data specialist at <strong><a href="https://www.cohere.com" target="_blank" rel="noopener noreferrer" className="cohere">Cohere</a></strong> helping train their enterprise LLMs</p>
                         </li>
                         <li>
-                            <p>machine learning intern at <strong><a href="https://www.rbc.com" target="_blank" rel="noopener noreferrer" className="rbc">RBC</a></strong> </p>
+                            <p>machine learning intern at <strong><a href="https://www.rbc.com" target="_blank" rel="noopener noreferrer" className="rbc">RBC</a></strong> building GenAI tools for advisors</p>
                         </li>
                         <li>
                             <p>co-founder of Flipdoor, backed by <strong><a href="https://hatchery.engineering.utoronto.ca/" target="_blank" rel="noopener noreferrer" className="hatchery">UofT Hatchery</a></strong> </p>
+                        </li>
+                    </ul>
+                    <p>coming up:</p>
+                    <ul>
+                        <li>
+                            <p>data science intern at <strong><a href="https://www.asana.com/" target="_blank" rel="noopener noreferrer" className="asana">a cool company</a></strong></p>
                         </li>
                     </ul>
                 </div>

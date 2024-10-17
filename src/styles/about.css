@@ -257,3 +257,13 @@ html, body {
 .about-me .hatchery:hover {
     color: #8eb9b9;
 }
+
+.asana {
+    text-decoration: none;
+    color: #f06a6a;
+    transition: color 0.3s ease
+}
+
+.about-me .asana:hover {
+    color: #f59999;
+}
