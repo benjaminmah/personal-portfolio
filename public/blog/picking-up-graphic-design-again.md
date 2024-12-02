@@ -11,6 +11,6 @@ But enough with the career talk → I wanted to share something a bit different 
 
 Lately, life's been feeling a bit stagnant, so I decided to pick up graphic design again. By "again", I mean revisiting my hobby during the pandemic. Spending so much time indoors led me to start a basketball Instagram page, where I designed my own graphics featuring stats and fun facts. You can actually still find it [here](https://instagram.com/dunkerdistrict) (but I archived most of the posts a while back and forgot the login information 💀).
 
-This time, I wanted to start fresh. Instead of sticking to basketball, I let my creative expression take control and decided to create posters about whatever inspires me. Music, movies, random things I find pretty/cool - it's been a lot fo fun exploring this new creative outlet.
+This time, I wanted to start fresh. Instead of sticking to basketball, I let my creative expression take control and decided to create posters about anything on my mind. Music, movies, random things I find pretty/cool - it's been a lot of fun despite all the learning I've been doing!
 
 So far, I've created 5 posters, but I plan to continue keep making more. You can check out my work [here](https://instagram.com/hhybin), and if you like what you see or have feedback, don't hesitate to reach out and let me know! Also taking requests so don't be shy :)
