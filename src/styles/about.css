@@ -228,6 +228,26 @@ html, body {
     color: #f19c5f;
 }
 
+.bugbot {
+    text-decoration: none;
+    color: #083ede;
+    transition: color 0.3s ease
+}
+
+.about-me .bugbot:hover {
+    color: #5875cc;
+}
+
+.ubisoft {
+    text-decoration: none;
+    color: #55308a;
+    transition: color 0.3s ease
+}
+
+.about-me .ubisoft:hover {
+    color: #855dbd;
+}
+
 .cohere {
     text-decoration: none;
     color: #355146;

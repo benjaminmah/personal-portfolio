@@ -8,7 +8,7 @@ const About = () => {
                 <div className="about-text">
                     <h1>about me</h1>
                     <p>hello! my name is Benjamin Mah and I'm a machine intelligence engineering student at the University of Toronto. I'm passionate about harnessing the potential of machine learning to create impactful solutions, but when I'm not at my computer ...</p>
-                    <p>... you can find me collecting records, playing and watching basketball, or sleeping</p>
+                    <p>... you can find me collecting records, playing and watching basketball, or sleeping (zzz)</p>
                 </div>
                 <img src="/icons/me1.png" alt="me" className="about-image" />
             </div>
@@ -16,9 +16,12 @@ const About = () => {
                 <img src="/icons/brain1.png" alt="me" className="experiences-image" />
                 <div className="experiences">
                     <h1>experiences</h1>
-                    <p>currently, I'm working at <strong><a href="https://www.mozilla.org" target="_blank" rel="noopener noreferrer" className="mozilla">Mozilla</a></strong> as a machine learning intern on the ci and quality tools team!</p>
+                    <p>this summer, I'll be working at <strong><a href="https://www.asana.com/" target="_blank" rel="noopener noreferrer" className="asana">Asana</a></strong> as a data science intern on the conversion retention team!</p>
                     <p>previously:</p>
                     <ul>
+                        <li>
+                            <p>machine learning engineer intern at <strong><a href="https://www.mozilla.org" target="_blank" rel="noopener noreferrer" className="mozilla">Mozilla</a></strong> working on tools like <a href="https://wiki.mozilla.org/BugBot" target="_blank" rel="noopener noreferrer" className="bugbot">bugbot</a> and a review helper tool in collaboration with <strong><a href="https://www.ubisoft.com" target="_blank" rel="noopener noreferrer" className="ubisoft">Ubisoft</a></strong></p>
+                        </li>
                         <li>
                             <p>data specialist at <strong><a href="https://www.cohere.com" target="_blank" rel="noopener noreferrer" className="cohere">Cohere</a></strong> helping train their enterprise LLMs</p>
                         </li>
@@ -27,12 +30,6 @@ const About = () => {
                         </li>
                         <li>
                             <p>co-founder of Flipdoor, backed by <strong><a href="https://hatchery.engineering.utoronto.ca/" target="_blank" rel="noopener noreferrer" className="hatchery">UofT Hatchery</a></strong> </p>
-                        </li>
-                    </ul>
-                    <p>coming up:</p>
-                    <ul>
-                        <li>
-                            <p>data science intern at <strong><a href="https://www.asana.com/" target="_blank" rel="noopener noreferrer" className="asana">a cool company</a></strong></p>
                         </li>
                     </ul>
                 </div>
