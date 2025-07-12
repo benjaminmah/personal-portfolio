@@ -16,7 +16,7 @@ const About = () => {
                 <img src="/icons/brain1.png" alt="me" className="experiences-image" />
                 <div className="experiences">
                     <h1>experiences</h1>
-                    <p>this summer, I'll be working at <strong><a href="https://www.asana.com/" target="_blank" rel="noopener noreferrer" className="asana">Asana</a></strong> as a data science intern on the conversion retention team!</p>
+                    <p>currently, I'm working at <strong><a href="https://www.asana.com/" target="_blank" rel="noopener noreferrer" className="asana">Asana</a></strong> as a data science intern on the conversion and retention team!</p>
                     <p>previously:</p>
                     <ul>
                         <li>
