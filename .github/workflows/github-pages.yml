@@ -9,6 +9,7 @@ permissions:
 
 jobs:
   build-and-deploy:
+    name: Build and Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -26,12 +27,13 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          CI: false
+
+      - name: Configure Git
+        run: |
+          git config --global user.name 'Benjamin Mah'
+          git config --global user.email 'benjaminmah2004@gmail.com'
 
       - name: Deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          npx gh-pages -d build -b gh-pages -c benjaminmah.com \
-            --repo "https://x-access-token:${GITHUB_TOKEN}@github.com/benjaminmah/personal-portfolio.git"
+        run: npm run deploy
