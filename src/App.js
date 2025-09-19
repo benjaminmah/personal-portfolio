@@ -3,19 +3,63 @@ import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import { ThemeProvider } from 'styled-components';
 import original from 'react95/dist/themes/original';
-import { Window, WindowHeader, WindowContent, Tabs, Tab, TabBody, Button, Anchor, GroupBox, Tooltip, ScrollView, Frame } from 'react95';
-import PlaySvg from 'pixelarticons/svg/play.svg';
-import PauseSvg from 'pixelarticons/svg/pause.svg';
-import PrevSvg from 'pixelarticons/svg/prev.svg';
-import NextSvg from 'pixelarticons/svg/next.svg';
-import GithubSvg from 'pixelarticons/svg/github.svg';
+import honey from 'react95/dist/themes/honey';
+import lilac from 'react95/dist/themes/lilac';
+import rose from 'react95/dist/themes/rose';
+import peggysPastels from 'react95/dist/themes/peggysPastels';
+import vaporTeal from 'react95/dist/themes/vaporTeal';
+import vistaesqueMidnight from 'react95/dist/themes/vistaesqueMidnight';
+import spruce from 'react95/dist/themes/spruce';
+import { Window, WindowHeader, WindowContent, Tabs, Tab, TabBody, Button, Anchor, GroupBox, Tooltip, ScrollView, Frame, Radio } from 'react95';
+import { ReactComponent as PlayIcon } from 'pixelarticons/svg/play.svg';
+import { ReactComponent as PauseIcon } from 'pixelarticons/svg/pause.svg';
+import { ReactComponent as PrevIcon } from 'pixelarticons/svg/prev.svg';
+import { ReactComponent as NextIcon } from 'pixelarticons/svg/next.svg';
+import { ReactComponent as GithubIcon } from 'pixelarticons/svg/github.svg';
 import LinkedInSvg from './icons/linkedin.png';
-import MusicLibSvg from 'pixelarticons/svg/music.svg';
-import MailSvg from 'pixelarticons/svg/mail.svg';
-import FileSvg from 'pixelarticons/svg/file-alt.svg';
+import { ReactComponent as MusicIcon } from 'pixelarticons/svg/music.svg';
+import { ReactComponent as MailIcon } from 'pixelarticons/svg/mail.svg';
+import { ReactComponent as FileIcon } from 'pixelarticons/svg/file-alt.svg';
 
 function App() {
   const [activeTab, setActiveTab] = useState(0);
+  // theme
+  const themeOptions = [
+    { key: 'original', label: 'default', theme: original },
+    { key: 'dalgona', label: 'honey', theme: honey },
+    { key: 'lavender', label: 'lavender', theme: lilac },
+    { key: 'roseQuartz', label: 'rose', theme: rose },
+    { key: 'vaporwave', label: 'pacific', theme: vaporTeal },
+    { key: 'matcha', label: 'matcha', theme: spruce },
+  ];
+  const [themeKey, setThemeKey] = useState(() => {
+    try {
+      return localStorage.getItem('themeKey') || 'dalgona';
+    } catch {
+      return 'dalgona';
+    }
+  });
+  const currentTheme = themeOptions.find(t => t.key === themeKey)?.theme || honey;
+
+  // Sync CRT-style background with selected theme
+  useEffect(() => {
+    const baseByTheme = {
+      original: '#0b1226',
+      dalgona: '#1a1308', // warm brown
+      lavender: '#120e1a', // soft purple tint
+      roseQuartz: '#140e12', // rosy tint
+      pastelDaydream: '#111318', // muted dark base for pastels
+      vaporwave: '#0a1820', // teal/cyan tint
+      midnightVista: '#0a1129', // deep midnight blue
+      matcha: '#0d140f', // deep green tea
+    };
+    const base = baseByTheme[themeKey] || '#0b1226';
+    const scanline = 'repeating-linear-gradient(\n      to bottom,\n      rgba(255, 255, 255, 0.045) 0px,\n      rgba(255, 255, 255, 0.045) 1px,\n      rgba(0, 0, 0, 0) 2px,\n      rgba(0, 0, 0, 0) 4px\n    )';
+    const body = document.body;
+    if (!body) return;
+    body.style.backgroundColor = base;
+    body.style.backgroundImage = scanline;
+  }, [themeKey]);
   // blog posts (loaded from public/blog/posts.json)
   const [blogPosts, setBlogPosts] = useState([]);
   const [blogLoading, setBlogLoading] = useState(false);
@@ -188,8 +232,17 @@ function App() {
 
   return (
     <div className="appRoot">
-      <ThemeProvider theme={original}>
-      <div className="windowWrap">
+      <ThemeProvider theme={currentTheme}>
+      <div
+        className="windowWrap"
+        style={{
+          '--progress-bg': currentTheme.material,
+          '--progress-fill': currentTheme.headerBackground,
+          '--progress-border': currentTheme.borderDarkest,
+          '--progress-w': '260px',
+          '--icon-color': currentTheme.materialText || currentTheme.canvasText,
+        }}
+      >
         <Window style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
           <WindowHeader>benjamin's website</WindowHeader>
           <WindowContent style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -197,6 +250,7 @@ function App() {
               <Tab value={0}>about</Tab>
               <Tab value={1}>blog</Tab>
               <Tab value={2}>music</Tab>
+              <Tab value={3}>themes</Tab>
             </Tabs>
             <TabBody style={{ flex: 1, overflow: 'hidden' }}>
               {activeTab === 0 && (
@@ -234,19 +288,20 @@ function App() {
                     <GroupBox label="contact me :)">
                       <div className="iconsRow">
                         <Anchor href="https://www.linkedin.com/in/benjaminmahh/" title="LinkedIn" rel="noreferrer noopener" target="_blank">
-                          <img className="icon24 shrink80" src={LinkedInSvg} alt="LinkedIn" />
+                          <span className="iconMask linkedinMask" aria-hidden="true" />
+                          <span className="sr-only" style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>LinkedIn</span>
                         </Anchor>
                         <Anchor href="https://github.com/benjaminmah" title="GitHub" rel="noreferrer noopener" target="_blank">
-                          <img className="icon24" src={GithubSvg} alt="GitHub" />
+                          <GithubIcon className="icon24SvgLg" />
                         </Anchor>
                         <Anchor href="https://open.spotify.com/user/b8og4r9gr9jql088ihzux4lx7?si=5b748481b9274b48" title="Spotify" rel="noreferrer noopener" target="_blank">
-                          <img className="icon24" src={MusicLibSvg} alt="Spotify" />
+                          <MusicIcon className="icon24SvgLg" />
                         </Anchor>
                         <Anchor href="mailto:benjaminmah.bm@gmail.com" title="Email">
-                          <img className="icon24" src={MailSvg} alt="Email" />
+                          <MailIcon className="icon24SvgLg" />
                         </Anchor>
                         <Anchor href="/files/Benjamin-Mah-Resume.pdf" title="Resume" rel="noreferrer noopener" target="_blank">
-                          <img className="icon24" src={FileSvg} alt="Resume" />
+                          <FileIcon className="icon24SvgLg" />
                         </Anchor>
                       </div>
                     </GroupBox>
@@ -312,29 +367,51 @@ function App() {
                   </div>
                   <div className="bottomArea">
                     <Marquee text={`${playlist[index]?.title || 'Unknown Title'} - ${playlist[index]?.artist || 'Unknown Artist'}`} />
-                    <div className="controlsRow">
-                      <div className="controlsLeft">
-                        <Button variant='thin' className="squareButton" onClick={prev} aria-label="Previous">
-                          <img className="icon24" src={PrevSvg} alt="prev" />
-                        </Button>
-                        <Button variant='thin' className="squareButton" onClick={playPause} aria-label={playing ? 'Pause' : 'Play'}>
-                          <img className="icon24" src={playing ? PauseSvg : PlaySvg} alt={playing ? 'pause' : 'play'} />
-                        </Button>
-                        <Button variant='thin' className="squareButton" onClick={next} aria-label="Next">
-                          <img className="icon24" src={NextSvg} alt="next" />
-                        </Button>
-                      </div>
-                      <div className="controlsRight">
-                        <div style={{ width: 180 }}>
+                    <div className="controlsBlock">
+                      <div className="progressRow">
+                        <div className="progressWrap">
                           <div className="progressOuter">
                             <div className={`progressInner ${noAnim ? 'noAnim' : ''}`} style={{ transform: `scaleX(${(percent || 0) / 100})` }} />
                           </div>
                         </div>
-                        <div style={{ whiteSpace: 'nowrap' }}>
+                        <div className="timeText">
                           {formatTime(current)} / {formatTime(duration)}
                         </div>
                       </div>
+                      <div className="controlsLeft">
+                        <Button variant='thin' className="squareButton" onClick={prev} aria-label="Previous">
+                          <PrevIcon className="icon24Svg" />
+                        </Button>
+                        <Button variant='thin' className="squareButton" onClick={playPause} aria-label={playing ? 'Pause' : 'Play'}>
+                          {playing ? (
+                            <PauseIcon className="icon24Svg" />
+                          ) : (
+                            <PlayIcon className="icon24Svg" />
+                          )}
+                        </Button>
+                        <Button variant='thin' className="squareButton" onClick={next} aria-label="Next">
+                          <NextIcon className="icon24Svg" />
+                        </Button>
+                      </div>
                     </div>
+                  </div>
+                </div>
+              )}
+              {activeTab === 3 && (
+                <div className="stack">
+                  <div className="stack">
+                    {themeOptions.map((opt) => (
+                      <Radio
+                        key={opt.key}
+                        name="theme-radio"
+                        label={opt.label}
+                        checked={themeKey === opt.key}
+                        onChange={() => {
+                          setThemeKey(opt.key);
+                          try { localStorage.setItem('themeKey', opt.key); } catch {}
+                        }}
+                      />
+                    ))}
                   </div>
                 </div>
               )}
