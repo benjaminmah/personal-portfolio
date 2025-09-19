@@ -1,92 +1,152 @@
-@font-face {
-  font-family: 'PP Mondwest';
-  src: url('./assets/fonts/PPMondwest-Regular.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+/* Minimal layout utilities for centering the React95 window */
 
-@font-face {
-  font-family: 'PP NeueBit';
-  src: url('./assets/fonts/PPNeueBit-Bold.otf') format('opentype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-:root {
-  --bg: #ffffff;
-  --fg: #000000;
-  --primary: #0000ff;      /* BLUE BLUE */
-  --primary-dark: #0012b3; /* darker edge */
-}
-
-.minimal-home {
+.appRoot {
   min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+}
+
+.windowWrap {
+  --size: min(92vmin, 520px);
+  width: var(--size);
+  height: var(--size);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.row {
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: var(--bg);
+  gap: 8px;
 }
 
-.bitmap-blue {
-  color: var(--primary);
-  font-family: 'PP Mondwest', Georgia, 'Times New Roman', serif;
-  font-size: 2.3rem;
-  text-align: center;
-  letter-spacing: 0;
-  -webkit-font-smoothing: none;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeSpeed;
-}
-
-.content {
+/* Music layout: centered art, controls below */
+.musicCenter {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  height: 100%;
 }
 
-.nav {
+.artArea {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
 }
 
-.nav-links {
+.albumArtHuge {
+  width: 72%;
+  max-width: 280px;
+  max-height: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  object-fit: cover;
+  border: 1px solid rgba(0,0,0,0.4);
+}
+
+.bottomArea {
+  width: 100%;
   display: flex;
-  gap: 14px;
-  list-style: none;
-  padding: 6px 0 0;
-  margin: 0;
-  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* Retro pixel buttons */
-.btn {
+.controlsRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.controlsLeft {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.controlsRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.squareButton {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+}
+
+.icon24 {
+  width: 24px;
+  height: 24px;
+  image-rendering: pixelated;
+}
+
+.marqueeWrap {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 4px 6px;
+  max-width: 100%;
+}
+
+.marqueeText {
   display: inline-block;
-  padding: 8px 14px;
-  font-family: 'PP NeueBit', 'PP Mondwest', Georgia, 'Times New Roman', serif;
-  font-size: 1rem;
-  color: var(--primary);
-  background: transparent;
-  text-decoration: none;
-  border: 1px solid var(--primary);
-  box-shadow: 3px 3px 0 var(--primary);
-  -webkit-font-smoothing: none;
-  text-rendering: optimizeSpeed;
+  will-change: transform;
 }
 
-.btn:hover,
-.btn:focus {
-  color: #ffffff;
-  background: var(--primary);
-  box-shadow: 2px 2px 0 var(--primary-dark);
+@keyframes marqueeSlide {
+  0% { transform: translateX(0); }
+  10% { transform: translateX(0); }
+  90% { transform: translateX(calc(-1 * var(--scroll-dist, 0px))); }
+  100% { transform: translateX(calc(-1 * var(--scroll-dist, 0px))); }
 }
 
-.btn:active {
-  box-shadow: 1px 1px 0 var(--primary-dark);
+.marqueeText.running {
+  animation: marqueeSlide var(--scroll-time, 6s) linear infinite;
 }
 
-.btn:focus-visible {
-  outline: 1px dashed var(--primary);
-  outline-offset: 2px;
+/* Center title/artist when not scrolling */
+.marqueeWrap.centered {
+  text-align: center;
+}
+.marqueeWrap.scrolling {
+  text-align: left;
+}
+
+/* Custom progress (no percentage, no transitions) */
+.progressOuter {
+  width: 100%;
+  height: 10px;
+  background: #cfcfcf;
+  border: 1px solid #000;
+  overflow: hidden;
+}
+.progressInner {
+  width: 100%;
+  height: 100%;
+  background: #2b58d4;
+  transform-origin: left center;
+  transform: scaleX(0);
+  will-change: transform;
+  transition: transform 0.18s linear;
+}
+
+.progressInner.noAnim {
+  transition: none;
+}
+
+.spacer {
+  height: 8px;
 }
