@@ -2,15 +2,21 @@
   "tracks": [
     {
       "src": "/media/tracks/hegetsmesohigh.mp3",
-      "title": "He Gets Me So High",
+      "title": "he gets me so high",
       "artist": "beabadoobee",
       "cover": "/media/albums/hegetsmesohigh.jpg"
     },
     {
       "src": "/media/tracks/horsepower.mp3",
-      "title": "Horsepower",
-      "artist": "Daniel Caesar",
+      "title": "horsepower",
+      "artist": "daniel caesar",
       "cover": "/media/albums/horsepower.jpg"
+    },
+    {
+      "src": "/media/tracks/promiseoftheworld.mp3",
+      "title": "promise of the world",
+      "artist": "kimura yumi (howl's moving castle ost)",
+      "cover": "/media/albums/promiseoftheworld.jpeg"
     }
   ]
 }
