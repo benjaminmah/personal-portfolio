@@ -227,19 +227,29 @@ function App() {
       .finally(() => setPostLoading(false));
   }, [selectedBlog, blogPosts]);
 
+  // CSS variables for theming UI pieces
+  const headerBg = currentTheme.headerBackground;
+  const computedFill = themeKey === 'dalgona'
+    ? 'rgb(255, 255, 0)'
+    : (headerBg || currentTheme.progress || currentTheme.anchor || currentTheme.flatDark || currentTheme.borderDark);
+
+  const styleVars = {
+    '--progress-bg': currentTheme.canvas,
+    '--progress-fill': computedFill,
+    '--progress-border': currentTheme.borderDarkest,
+    '--progress-w': '260px',
+    '--icon-color': currentTheme.materialText || currentTheme.canvasText,
+    '--album-bg': currentTheme.canvas,
+    '--bevel-lightest': currentTheme.borderLightest,
+    '--bevel-light': currentTheme.borderLight,
+    '--bevel-dark': currentTheme.borderDark,
+    '--bevel-darkest': currentTheme.borderDarkest,
+  };
+
   return (
     <div className="appRoot">
       <ThemeProvider theme={currentTheme}>
-      <div
-        className="windowWrap"
-        style={{
-          '--progress-bg': currentTheme.material,
-          '--progress-fill': currentTheme.headerBackground,
-          '--progress-border': currentTheme.borderDarkest,
-          '--progress-w': '260px',
-          '--icon-color': currentTheme.materialText || currentTheme.canvasText,
-        }}
-      >
+      <div className="windowWrap" style={styleVars}>
         <Window style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
           <WindowHeader>benjamin's website</WindowHeader>
           <WindowContent style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
@@ -326,7 +336,7 @@ function App() {
                       return (
                         <div className="stack" style={{ height: '100%' }}>
                           <div className="row">
-                            <Button onClick={closeBlog}>Back</Button>
+                            <Button onClick={closeBlog}>back</Button>
                             <strong style={{ marginLeft: 8, fontWeight: 'bold'}}>{post.title}</strong>
                           </div>
                           <div style={{ flex: 1, minHeight: 0 }}>
@@ -356,11 +366,13 @@ function App() {
               {activeTab === 2 && (
                 <div className="musicCenter">
                   <div className="artArea">
-                    <img
-                      className="albumArtHuge"
-                      src={publicUrl(playlist[index]?.cover || '/media/albums/default.svg')}
-                      alt={playlist[index]?.title ? `${playlist[index].title} cover` : 'album cover'}
-                    />
+                    <div className="albumShadow">
+                        <img
+                          className="albumArtHuge"
+                          src={publicUrl(playlist[index]?.cover || '/media/albums/default.svg')}
+                          alt={playlist[index]?.title ? `${playlist[index].title} cover` : 'album cover'}
+                        />
+                    </div>
                   </div>
                   <div className="bottomArea">
                     <Marquee text={`${playlist[index]?.title || 'Unknown Title'} - ${playlist[index]?.artist || 'Unknown Artist'}`} />
