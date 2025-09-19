@@ -17,6 +17,12 @@
       "title": "promise of the world",
       "artist": "kimura yumi (howl's moving castle ost)",
       "cover": "/media/albums/promiseoftheworld.jpeg"
+    },
+    {
+      "src": "/media/tracks/flashforward.mp3",
+      "title": "flash forward",
+      "artist": "le sserafim",
+      "cover": "/media/albums/flashforward.jpg"
     }
   ]
 }
