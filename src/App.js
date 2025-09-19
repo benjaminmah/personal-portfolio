@@ -20,6 +20,10 @@ import { ReactComponent as FileIcon } from 'pixelarticons/svg/file-alt.svg';
 
 function App() {
   const [activeTab, setActiveTab] = useState(0);
+  const [smallScreen, setSmallScreen] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.innerWidth < 600 || window.innerHeight < 600;
+  });
   // theme
   const themeOptions = [
     { key: 'original', label: 'default', theme: original },
@@ -193,6 +197,14 @@ function App() {
 
   // load blog index
   useEffect(() => {
+    const onResize = () => {
+      setSmallScreen(window.innerWidth < 600 || window.innerHeight < 600);
+    };
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  useEffect(() => {
     setBlogLoading(true);
     setBlogError(null);
     fetch(publicUrl('/blog/posts.json'))
@@ -244,6 +256,24 @@ function App() {
     '--bevel-dark': currentTheme.borderDark,
     '--bevel-darkest': currentTheme.borderDarkest,
   };
+
+  if (smallScreen) {
+    return (
+      <div className="appRoot">
+        <ThemeProvider theme={currentTheme}>
+          <div className="windowWrap" style={styleVars}>
+            <Window style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <WindowHeader>benjamin's website</WindowHeader>
+              <WindowContent style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+                unfortunately your screen is too small to display my website :( <br /><br />
+                revisit on a larger device?
+              </WindowContent>
+            </Window>
+          </div>
+        </ThemeProvider>
+      </div>
+    );
+  }
 
   return (
     <div className="appRoot">
