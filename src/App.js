@@ -1,7 +1,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
-import { Window, WindowHeader, WindowContent, Tabs, Tab, TabBody, Button, Anchor, GroupBox, Tooltip, Frame } from 'react95';
+import { Window, WindowHeader, WindowContent, Tabs, Tab, TabBody, Button, Anchor, GroupBox, Tooltip, ScrollView, Frame } from 'react95';
 import PlaySvg from 'pixelarticons/svg/play.svg';
 import PauseSvg from 'pixelarticons/svg/pause.svg';
 import PrevSvg from 'pixelarticons/svg/prev.svg';
@@ -111,13 +111,6 @@ function App() {
     } else {
       a.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
     }
-  };
-
-  const restart = () => {
-    const a = audioRef.current;
-    if (!a) return;
-    a.currentTime = 0;
-    if (playing) a.play();
   };
 
   const prev = () => {
@@ -230,19 +223,19 @@ function App() {
                   <div style={{ marginTop: 'auto' }}>
                     <GroupBox label="contact me">
                       <div className="iconsRow">
-                        <Anchor href="#" title="LinkedIn" rel="noreferrer noopener" target="_blank">
+                        <Anchor href="https://www.linkedin.com/in/benjaminmahh/" title="LinkedIn" rel="noreferrer noopener" target="_blank">
                           <img className="icon24 shrink80" src={LinkedInSvg} alt="LinkedIn" />
                         </Anchor>
-                        <Anchor href="#" title="GitHub" rel="noreferrer noopener" target="_blank">
+                        <Anchor href="https://github.com/benjaminmah" title="GitHub" rel="noreferrer noopener" target="_blank">
                           <img className="icon24" src={GithubSvg} alt="GitHub" />
                         </Anchor>
-                        <Anchor href="#" title="Spotify" rel="noreferrer noopener" target="_blank">
+                        <Anchor href="https://open.spotify.com/user/b8og4r9gr9jql088ihzux4lx7?si=5b748481b9274b48" title="Spotify" rel="noreferrer noopener" target="_blank">
                           <img className="icon24" src={MusicLibSvg} alt="Spotify" />
                         </Anchor>
-                        <Anchor href="mailto:someone@example.com" title="Email">
+                        <Anchor href="mailto:benjaminmah.bm@gmail.com" title="Email">
                           <img className="icon24" src={MailSvg} alt="Email" />
                         </Anchor>
-                        <Anchor href="#" title="Resume" rel="noreferrer noopener" target="_blank">
+                        <Anchor href="/files/Benjamin-Mah-Resume.pdf" title="Resume" rel="noreferrer noopener" target="_blank">
                           <img className="icon24" src={FileSvg} alt="Resume" />
                         </Anchor>
                       </div>
@@ -272,22 +265,25 @@ function App() {
                         <div className="stack" style={{ height: '100%' }}>
                           <div className="row">
                             <Button onClick={closeBlog}>Back</Button>
-                            <strong style={{ marginLeft: 8 }}>{post.title}</strong>
+                            <strong style={{ marginLeft: 8, fontWeight: 'bold'}}>{post.title}</strong>
                           </div>
                           <div style={{ flex: 1, minHeight: 0 }}>
+
+                            <Frame variant='field'>
+                              <ScrollView>
                             <div
                               style={{
-                                padding: '1rem',
-                                height: '100%',
-                                maxHeight: '320px',
+                                padding: '0.5rem',
+                                maxHeight: '290px',
                                 overflowY: 'auto',
-                                background: '#fff',
-                                border: '2px inset #ccc',
-                                borderRadius: 2,
                               }}
                             >
                               <div style={{ whiteSpace: 'pre-wrap' }}>{postLoading ? 'loading…' : postBody}</div>
                             </div>
+                            </ScrollView>
+                            </Frame>
+                            
+
                           </div>
                         </div>
                       );
@@ -399,22 +395,5 @@ function Marquee({ text, pause = 1200 }) {
         {text}
       </div>
     </div>
-  );
-}
-
-function PauseIcon(props) {
-  // simple 16x16 pixel pause using crisp edges
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      viewBox="0 -0.5 16 16"
-      shapeRendering="crispEdges"
-      {...props}
-    >
-      <path stroke="#000" d="M4 2h3M4 3h1m1 0h1M4 4h1m1 0h1M4 5h1m1 0h1M4 6h1m1 0h1M4 7h1m1 0h1M4 8h1m1 0h1M4 9h1m1 0h1M4 10h1m1 0h1M4 11h3" />
-      <path stroke="#000" d="M9 2h3M9 3h1m1 0h1M9 4h1m1 0h1M9 5h1m1 0h1M9 6h1m1 0h1M9 7h1m1 0h1M9 8h1m1 0h1M9 9h1m1 0h1M9 10h1m1 0h1M9 11h3" />
-    </svg>
   );
 }
