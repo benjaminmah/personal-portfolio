@@ -221,7 +221,7 @@ function App() {
                     </div>
                   </div>
                   <div style={{ marginTop: 'auto' }}>
-                    <GroupBox label="contact me">
+                    <GroupBox label="contact me :)">
                       <div className="iconsRow">
                         <Anchor href="https://www.linkedin.com/in/benjaminmahh/" title="LinkedIn" rel="noreferrer noopener" target="_blank">
                           <img className="icon24 shrink80" src={LinkedInSvg} alt="LinkedIn" />
