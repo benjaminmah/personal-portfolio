@@ -314,13 +314,13 @@ function App() {
                     <Marquee text={`${playlist[index]?.title || 'Unknown Title'} - ${playlist[index]?.artist || 'Unknown Artist'}`} />
                     <div className="controlsRow">
                       <div className="controlsLeft">
-                        <Button className="squareButton" onClick={prev} aria-label="Previous">
+                        <Button variant='thin' className="squareButton" onClick={prev} aria-label="Previous">
                           <img className="icon24" src={PrevSvg} alt="prev" />
                         </Button>
-                        <Button className="squareButton" onClick={playPause} aria-label={playing ? 'Pause' : 'Play'}>
+                        <Button variant='thin' className="squareButton" onClick={playPause} aria-label={playing ? 'Pause' : 'Play'}>
                           <img className="icon24" src={playing ? PauseSvg : PlaySvg} alt={playing ? 'pause' : 'play'} />
                         </Button>
-                        <Button className="squareButton" onClick={next} aria-label="Next">
+                        <Button variant='thin' className="squareButton" onClick={next} aria-label="Next">
                           <img className="icon24" src={NextSvg} alt="next" />
                         </Button>
                       </div>
