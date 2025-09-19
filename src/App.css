@@ -1,38 +1,92 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'PP Mondwest';
+  src: url('./assets/fonts/PPMondwest-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'PP NeueBit';
+  src: url('./assets/fonts/PPNeueBit-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+:root {
+  --bg: #ffffff;
+  --fg: #000000;
+  --primary: #0000ff;      /* BLUE BLUE */
+  --primary-dark: #0012b3; /* darker edge */
 }
 
-.App-header {
-  background-color: #282c34;
+.minimal-home {
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg);
+}
+
+.bitmap-blue {
+  color: var(--primary);
+  font-family: 'PP Mondwest', Georgia, 'Times New Roman', serif;
+  font-size: 2.3rem;
+  text-align: center;
+  letter-spacing: 0;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+.content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 14px;
+}
+
+.nav {
+  width: 100%;
+}
+
+.nav-links {
+  display: flex;
+  gap: 14px;
+  list-style: none;
+  padding: 6px 0 0;
+  margin: 0;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+/* Retro pixel buttons */
+.btn {
+  display: inline-block;
+  padding: 8px 14px;
+  font-family: 'PP NeueBit', 'PP Mondwest', Georgia, 'Times New Roman', serif;
+  font-size: 1rem;
+  color: var(--primary);
+  background: transparent;
+  text-decoration: none;
+  border: 1px solid var(--primary);
+  box-shadow: 3px 3px 0 var(--primary);
+  -webkit-font-smoothing: none;
+  text-rendering: optimizeSpeed;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn:hover,
+.btn:focus {
+  color: #ffffff;
+  background: var(--primary);
+  box-shadow: 2px 2px 0 var(--primary-dark);
+}
+
+.btn:active {
+  box-shadow: 1px 1px 0 var(--primary-dark);
+}
+
+.btn:focus-visible {
+  outline: 1px dashed var(--primary);
+  outline-offset: 2px;
 }
