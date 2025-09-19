@@ -51,32 +51,17 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-}
-
-.albumShadow {
-  filter: drop-shadow(4px 4px 0 var(--shadow-color, rgba(0, 0, 0, 0.2)));
-  display: inline-block;
-  margin: 0 auto;
-  width: 100%;
-  text-align: center;
-  margin-bottom: -3px;
-}
-
-.albumFrame {
-  display: inline-block;
-  line-height: 0;
-  background: var(--album-bg, #ffffff);
-  border: 1px solid var(--album-border, #000);
+  margin-bottom: -10px;
 }
 
 .albumArtHuge {
-  margin-top: 5px;
-  width: 58%;
-  max-width: 280px;
+  margin: 0;
+  width: 100%;
   max-height: 100%;
   aspect-ratio: 1 / 1;
   height: auto;
   object-fit: cover;
+  display: block;
 }
 
 .bottomArea {
@@ -214,7 +199,7 @@
   width: 100%;
   height: 10px;
   background: var(--progress-bg, #ffffff);
-  border: 1.5px solid var(--progress-border, #000);
+  border: 1px solid var(--progress-border, #000);
   overflow: hidden;
 }
 .progressInner {
@@ -224,7 +209,7 @@
   transform-origin: left center;
   transform: scaleX(0);
   will-change: transform;
-  transition: transform 0.18s linear;
+  transition: none;
 }
 
 .progressInner.noAnim {

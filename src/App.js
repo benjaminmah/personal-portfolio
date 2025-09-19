@@ -8,7 +8,7 @@ import lilac from 'react95/dist/themes/lilac';
 import rose from 'react95/dist/themes/rose';
 import vaporTeal from 'react95/dist/themes/vaporTeal';
 import spruce from 'react95/dist/themes/spruce';
-import { Window, WindowHeader, WindowContent, Tabs, Tab, TabBody, Button, Anchor, GroupBox, Tooltip, ScrollView, Frame, Radio } from 'react95';
+import { Window, WindowHeader, WindowContent, Tabs, Tab, TabBody, Button, Anchor, GroupBox, Tooltip, ScrollView, Frame, Radio, Avatar } from 'react95';
 import { ReactComponent as PlayIcon } from 'pixelarticons/svg/play.svg';
 import { ReactComponent as PauseIcon } from 'pixelarticons/svg/pause.svg';
 import { ReactComponent as PrevIcon } from 'pixelarticons/svg/prev.svg';
@@ -35,12 +35,12 @@ function App() {
   ];
   const [themeKey, setThemeKey] = useState(() => {
     try {
-      return localStorage.getItem('themeKey') || 'dalgona';
+      return localStorage.getItem('themeKey') || 'original';
     } catch {
-      return 'dalgona';
+      return 'original';
     }
   });
-  const currentTheme = themeOptions.find(t => t.key === themeKey)?.theme || honey;
+  const currentTheme = themeOptions.find(t => t.key === themeKey)?.theme || original;
 
   // Sync CRT-style background with selected theme
   useEffect(() => {
@@ -74,7 +74,8 @@ function App() {
   const audioRef = useRef(null);
   const [playing, setPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
-  const [current, setCurrent] = useState(0);
+  // displaySec is a clamped, once-per-second counter for retro feel
+  const [displaySec, setDisplaySec] = useState(0);
   const [noAnim, setNoAnim] = useState(false);
 
   useEffect(() => {
@@ -114,15 +115,12 @@ function App() {
       setDuration(audio.duration || 0);
       setNoAnim(false);
     };
-    const onTime = () => setCurrent(audio.currentTime || 0);
     const onEnded = () => setIndex((i) => i + 1);
     audio.addEventListener('loadedmetadata', onLoaded);
-    audio.addEventListener('timeupdate', onTime);
     audio.addEventListener('ended', onEnded);
     return () => {
       audio.pause();
       audio.removeEventListener('loadedmetadata', onLoaded);
-      audio.removeEventListener('timeupdate', onTime);
       audio.removeEventListener('ended', onEnded);
     };
   }, []);
@@ -134,8 +132,9 @@ function App() {
     const a = audioRef.current;
     a.src = publicUrl(track.src);
     a.load();
-    setCurrent(0);
+    
     setDuration(0);
+    setDisplaySec(0);
   }, [index, playlist]);
 
   // control playback when 'playing' changes (or when new src is set)
@@ -173,7 +172,8 @@ function App() {
       // restart current
       setNoAnim(true);
       a.currentTime = 0;
-      setCurrent(0);
+      
+      setDisplaySec(0);
       if (!playing) {
         a.play().then(() => setPlaying(true)).catch(() => {});
       }
@@ -193,7 +193,24 @@ function App() {
     setIndex((i) => (i + 1) % playlist.length);
   };
 
-  const percent = duration ? Math.min(100, (current / duration) * 100) : 0;
+  // Stepwise progress (update once per whole second for Win95 feel)
+  const percent = duration ? Math.min(100, (displaySec / duration) * 100) : 0;
+
+  // Keep displaySec ticking at most +1 per second, synced to audio time
+  useEffect(() => {
+    const a = audioRef.current;
+    if (!a) return;
+    // sync immediately when toggling play/pause
+    setDisplaySec(Math.floor(a.currentTime || 0));
+    let id;
+    if (playing) {
+      id = setInterval(() => {
+        const now = Math.floor(a.currentTime || 0);
+        setDisplaySec((prev) => (now > prev ? prev + 1 : prev));
+      }, 1000);
+    }
+    return () => { if (id) clearInterval(id); };
+  }, [playing]);
 
   // load blog index
   useEffect(() => {
@@ -409,13 +426,13 @@ function App() {
               {activeTab === 2 && (
                 <div className="musicCenter">
                   <div className="artArea">
-                    <div className="albumShadow">
-                        <img
-                          className="albumArtHuge"
-                          src={publicUrl(playlist[index]?.cover || '/media/albums/default.svg')}
-                          alt={playlist[index]?.title ? `${playlist[index].title} cover` : 'album cover'}
-                        />
-                    </div>
+                      <Avatar square size={250}>
+                      <img
+                        className="albumArtHuge"
+                        src={publicUrl(playlist[index]?.cover || '/media/albums/default.svg')}
+                        alt={playlist[index]?.title ? `${playlist[index].title} cover` : 'album cover'}
+                      />
+                      </Avatar>
                   </div>
                   <div className="bottomArea">
                     <Marquee text={`${playlist[index]?.title || 'Unknown Title'} - ${playlist[index]?.artist || 'Unknown Artist'}`} />
@@ -427,7 +444,7 @@ function App() {
                           </div>
                         </div>
                         <div className="timeText">
-                          {formatTime(current)} / {formatTime(duration)}
+                          {formatTime(displaySec)} / {formatTime(duration)}
                         </div>
                       </div>
                       <div className="controlsLeft">
