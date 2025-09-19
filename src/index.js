@@ -27,19 +27,36 @@ const GlobalStyles = createGlobalStyle`
     font-display: swap;
   }
 
-  /* CRT-style background (uniform dark blue + scanlines) */
+  /* CRT-style background (base color + animated scanlines overlay) */
   body {
     margin: 0;
-    background-color: #0b1226; /* deep navy blue */
+    background-color: #0b1226; /* deep navy base (overridden in App) */
+    color: #000;
+    font-family: 'ms_sans_serif', Arial, sans-serif;
+  }
+
+  @keyframes crtScan {
+    0% { background-position-y: 0; }
+    100% { background-position-y: 4px; }
+  }
+  @keyframes crtFlicker {
+    0%, 100% { opacity: 0.12; }
+    50% { opacity: 0.16; }
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+    pointer-events: none;
     background-image: repeating-linear-gradient(
       to bottom,
-      rgba(255, 255, 255, 0.045) 0px,
-      rgba(255, 255, 255, 0.045) 1px,
+      rgba(255, 255, 255, 0.08) 0px,
+      rgba(255, 255, 255, 0.08) 1px,
       rgba(0, 0, 0, 0) 2px,
       rgba(0, 0, 0, 0) 4px
     );
-    color: #000;
-    font-family: 'ms_sans_serif', Arial, sans-serif;
+    animation: crtScan 0.6s linear infinite, crtFlicker 3.2s ease-in-out infinite;
   }
 `;
 

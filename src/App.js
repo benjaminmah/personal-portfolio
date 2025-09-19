@@ -51,11 +51,10 @@ function App() {
       matcha: '#0d140f', // deep green tea
     };
     const base = baseByTheme[themeKey] || '#0b1226';
-    const scanline = 'repeating-linear-gradient(\n      to bottom,\n      rgba(255, 255, 255, 0.045) 0px,\n      rgba(255, 255, 255, 0.045) 1px,\n      rgba(0, 0, 0, 0) 2px,\n      rgba(0, 0, 0, 0) 4px\n    )';
     const body = document.body;
     if (!body) return;
     body.style.backgroundColor = base;
-    body.style.backgroundImage = scanline;
+    body.style.backgroundImage = 'none';
   }, [themeKey]);
   // blog posts (loaded from public/blog/posts.json)
   const [blogPosts, setBlogPosts] = useState([]);
