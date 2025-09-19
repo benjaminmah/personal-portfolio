@@ -435,7 +435,9 @@ function App() {
                       </Avatar>
                   </div>
                   <div className="bottomArea">
-                    <Marquee text={`${playlist[index]?.title || 'Unknown Title'} - ${playlist[index]?.artist || 'Unknown Artist'}`} />
+                    <div className="marqueeBox">
+                      <Marquee text={`${playlist[index]?.title || 'Unknown Title'} - ${playlist[index]?.artist || 'Unknown Artist'}`} />
+                    </div>
                     <div className="controlsBlock">
                       <div className="progressRow">
                         <div className="progressWrap">

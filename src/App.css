@@ -170,9 +170,17 @@
   max-width: 100%;
 }
 
+/* Constrain marquee to album art width */
+.marqueeBox {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
 .marqueeText {
   display: inline-block;
   will-change: transform;
+  padding-right: 5px; /* trailing buffer so last glyph isn't clipped */
 }
 
 @keyframes marqueeSlide {
