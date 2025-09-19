@@ -293,13 +293,13 @@ function App() {
                 <div className="aboutWrap">
                   <div className="stack">
                     <div>
-                      i'm benjamin and i'm a final year engineering student at the{' '}
+                      hey! i'm benjamin and i'm a final year engineering student at the{' '}
                       <Tooltip text="engineering science" enterDelay={100} leaveDelay={0}>
                       <Anchor href="https://www.utoronto.ca" target="_blank" rel="noreferrer noopener">university of toronto</Anchor>
                       </Tooltip>
                       ,{' '}currently doing research at the{' '}
                       <Tooltip text="third space group" enterDelay={100} leaveDelay={0}>
-                        <Anchor href="https://dgp.toronto.edu" target="_blank" rel="noreferrer noopener">DGP lab</Anchor>
+                        <Anchor href="https://dgp.toronto.edu" target="_blank" rel="noreferrer noopener">dgp lab</Anchor>
                       </Tooltip>
                     </div>
                     <div>
@@ -327,22 +327,32 @@ function App() {
                   <div style={{ marginTop: 'auto' }}>
                     <GroupBox label="contact me :)">
                       <div className="iconsRow">
-                        <Anchor href="https://www.linkedin.com/in/benjaminmahh/" title="LinkedIn" rel="noreferrer noopener" target="_blank">
-                          <span className="iconMask linkedinMask" aria-hidden="true" />
-                          <span className="sr-only" style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>LinkedIn</span>
-                        </Anchor>
-                        <Anchor href="https://github.com/benjaminmah" title="GitHub" rel="noreferrer noopener" target="_blank">
-                          <GithubIcon className="icon24SvgLg" />
-                        </Anchor>
-                        <Anchor href="https://open.spotify.com/user/b8og4r9gr9jql088ihzux4lx7?si=5b748481b9274b48" title="Spotify" rel="noreferrer noopener" target="_blank">
-                          <MusicIcon className="icon24SvgLg" />
-                        </Anchor>
-                        <Anchor href="mailto:benjaminmah.bm@gmail.com" title="Email">
-                          <MailIcon className="icon24SvgLg" />
-                        </Anchor>
-                        <Anchor href="/files/Benjamin-Mah-Resume.pdf" title="Resume" rel="noreferrer noopener" target="_blank">
-                          <FileIcon className="icon24SvgLg" />
-                        </Anchor>
+                        <Tooltip text="linkedin" enterDelay={100} leaveDelay={0}>
+                          <Anchor href="https://www.linkedin.com/in/benjaminmahh/" title="LinkedIn" rel="noreferrer noopener" target="_blank">
+                            <span className="iconMask linkedinMask" aria-hidden="true" />
+                            <span className="sr-only" style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0,0,0,0)', border: 0 }}>LinkedIn</span>
+                          </Anchor>
+                        </Tooltip>
+                        <Tooltip text="github" enterDelay={100} leaveDelay={0}>
+                          <Anchor href="https://github.com/benjaminmah" title="GitHub" rel="noreferrer noopener" target="_blank">
+                            <GithubIcon className="icon24SvgLg" />
+                          </Anchor>
+                        </Tooltip>
+                        <Tooltip text="spotify" enterDelay={100} leaveDelay={0}>
+                          <Anchor href="https://open.spotify.com/user/b8og4r9gr9jql088ihzux4lx7?si=5b748481b9274b48" title="Spotify" rel="noreferrer noopener" target="_blank">
+                            <MusicIcon className="icon24SvgLg" />
+                          </Anchor>
+                        </Tooltip>
+                        <Tooltip text="email" enterDelay={100} leaveDelay={0}>
+                          <Anchor href="mailto:benjaminmah.bm@gmail.com" title="Email">
+                            <MailIcon className="icon24SvgLg" />
+                          </Anchor>
+                        </Tooltip>
+                        <Tooltip text="resume" enterDelay={100} leaveDelay={0}>
+                          <Anchor href="/files/Benjamin-Mah-Resume.pdf" title="Resume" rel="noreferrer noopener" target="_blank">
+                            <FileIcon className="icon24SvgLg" />
+                          </Anchor>
+                        </Tooltip>
                       </div>
                     </GroupBox>
                   </div>
