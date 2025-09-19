@@ -1,7 +1,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
-import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import original from 'react95/dist/themes/original';
 import { Window, WindowHeader, WindowContent, Tabs, Tab, TabBody, Button, Anchor, GroupBox, Tooltip, ScrollView, Frame } from 'react95';
 import PlaySvg from 'pixelarticons/svg/play.svg';
@@ -83,7 +83,6 @@ function App() {
     };
   }, []);
 
-  // when index or playlist changes, load the track
   useEffect(() => {
     if (!audioRef.current || playlist.length === 0) return;
     setNoAnim(true);
@@ -93,10 +92,18 @@ function App() {
     a.load();
     setCurrent(0);
     setDuration(0);
+  }, [index, playlist]);
+
+  // control playback when 'playing' changes (or when new src is set)
+  useEffect(() => {
+    const a = audioRef.current;
+    if (!a) return;
     if (playing) {
       a.play().catch(() => setPlaying(false));
+    } else {
+      a.pause();
     }
-  }, [index, playlist]);
+  }, [playing, index]);
 
   const handleChange = (value) => setActiveTab(value);
 
@@ -383,9 +390,9 @@ function Marquee({ text, pause = 1200 }) {
     const travelSec = overflow / pxPerSec;
     const totalSec = travelSec + pause / 1000 + 0.5; // add small ease time
     setStyle({
-      ['--scroll-dist']: `${overflow}px`,
-      ['--scroll-time']: `${totalSec}s`,
-      ['--pause-time']: `${pause}ms`,
+      '--scroll-dist': `${overflow}px`,
+      '--scroll-time': `${totalSec}s`,
+      '--pause-time': `${pause}ms`,
     });
   }, [text, pause]);
 
