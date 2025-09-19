@@ -1,0 +1,16 @@
+{
+  "tracks": [
+    {
+      "src": "/media/tracks/hegetsmesohigh.mp3",
+      "title": "He Gets Me So High",
+      "artist": "beabadoobee",
+      "cover": "/media/albums/hegetsmesohigh.jpg"
+    },
+    {
+      "src": "/media/tracks/horsepower.mp3",
+      "title": "Horsepower",
+      "artist": "Daniel Caesar",
+      "cover": "/media/albums/horsepower.jpg"
+    }
+  ]
+}

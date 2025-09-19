@@ -1,7 +1,10 @@
-[
-    { "id": "life-update", "title": "life update [07.11.25]" },
-    { "id": "picking-up-graphic-design-again", "title": "picking up graphic design again [12.01.24]" },
-    { "id": "isnt-she-lovely", "title": "isn't she lovely - stevie wonder [08.28.24]"},
-    { "id": "small-sketches", "title": "small sketches [06.25.24]"},
-    { "id": "more-about-this-website", "title": "more about this website [06.20.24]" }
-]
+{
+  "posts": [
+    {
+      "id": 0,
+      "title": "life update",
+      "date": "2025-07-11",
+      "body": "/blog/posts/life-update.txt"
+    }
+  ]
+}
