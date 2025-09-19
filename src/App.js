@@ -227,7 +227,7 @@ function App() {
                       </Tooltip>
                     </div>
                     <div>
-                      in my free time, i like to collect records, journal, and sleeping (zzz)
+                      in my free time, i like to collect records, journal, and sleep (zzz)
                     </div>
                   </div>
                   <div style={{ marginTop: 'auto' }}>
@@ -311,7 +311,7 @@ function App() {
                     />
                   </div>
                   <div className="bottomArea">
-                    <Marquee text={`${playlist[index]?.title || 'Unknown Title'} — ${playlist[index]?.artist || 'Unknown Artist'}`} />
+                    <Marquee text={`${playlist[index]?.title || 'Unknown Title'} - ${playlist[index]?.artist || 'Unknown Artist'}`} />
                     <div className="controlsRow">
                       <div className="controlsLeft">
                         <Button className="squareButton" onClick={prev} aria-label="Previous">
