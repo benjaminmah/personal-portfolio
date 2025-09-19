@@ -1,6 +1,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+import original from 'react95/dist/themes/original';
 import { Window, WindowHeader, WindowContent, Tabs, Tab, TabBody, Button, Anchor, GroupBox, Tooltip, ScrollView, Frame } from 'react95';
 import PlaySvg from 'pixelarticons/svg/play.svg';
 import PauseSvg from 'pixelarticons/svg/pause.svg';
@@ -179,9 +181,10 @@ function App() {
 
   return (
     <div className="appRoot">
+      <ThemeProvider theme={original}>
       <div className="windowWrap">
         <Window style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column' }}>
-          <WindowHeader>benji's website</WindowHeader>
+          <WindowHeader>benjamin's website</WindowHeader>
           <WindowContent style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
             <Tabs value={activeTab} onChange={handleChange}>
               <Tab value={0}>about</Tab>
@@ -332,6 +335,7 @@ function App() {
           </WindowContent>
         </Window>
       </div>
+      </ThemeProvider>
     </div>
   );
 }
