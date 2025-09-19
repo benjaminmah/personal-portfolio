@@ -19,10 +19,22 @@
   gap: 12px;
 }
 
+.aboutWrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .row {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.iconsRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 /* Music layout: centered art, controls below */
@@ -93,6 +105,11 @@
   image-rendering: pixelated;
 }
 
+.shrink80 {
+  transform: scale(0.8);
+  transform-origin: center;
+}
+
 .marqueeWrap {
   position: relative;
   overflow: hidden;
@@ -146,6 +163,14 @@
 .progressInner.noAnim {
   transition: none;
 }
+
+/* Bulleted list styling (React95 reset removes defaults) */
+.bulletList {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+.bulletList li { margin: 2px 0; }
 
 .spacer {
   height: 8px;

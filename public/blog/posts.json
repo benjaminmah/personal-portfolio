@@ -1,0 +1,16 @@
+{
+  "posts": [
+    {
+      "id": 0,
+      "title": "hello world",
+      "date": "2024-09-01",
+      "body": "/blog/posts/hello-world.txt"
+    },
+    {
+      "id": 1,
+      "title": "another post",
+      "date": "2024-09-05",
+      "body": "/blog/posts/another-post.txt"
+    }
+  ]
+}

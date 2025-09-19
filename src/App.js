@@ -1,14 +1,26 @@
 
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
-import { Window, WindowHeader, WindowContent, Tabs, Tab, TabBody, Button } from 'react95';
+import { Window, WindowHeader, WindowContent, Tabs, Tab, TabBody, Button, Anchor, GroupBox, Tooltip, Frame } from 'react95';
 import PlaySvg from 'pixelarticons/svg/play.svg';
 import PauseSvg from 'pixelarticons/svg/pause.svg';
 import PrevSvg from 'pixelarticons/svg/prev.svg';
 import NextSvg from 'pixelarticons/svg/next.svg';
+import GithubSvg from 'pixelarticons/svg/github.svg';
+import LinkedInSvg from './icons/linkedin.png';
+import MusicLibSvg from 'pixelarticons/svg/music.svg';
+import MailSvg from 'pixelarticons/svg/mail.svg';
+import FileSvg from 'pixelarticons/svg/file-alt.svg';
 
 function App() {
   const [activeTab, setActiveTab] = useState(0);
+  // blog posts (loaded from public/blog/posts.json)
+  const [blogPosts, setBlogPosts] = useState([]);
+  const [blogLoading, setBlogLoading] = useState(false);
+  const [blogError, setBlogError] = useState(null);
+  const [selectedBlog, setSelectedBlog] = useState(null); // id or null
+  const [postBody, setPostBody] = useState('');
+  const [postLoading, setPostLoading] = useState(false);
   // playlist
   const [playlist, setPlaylist] = useState([]);
   const [index, setIndex] = useState(0);
@@ -21,7 +33,7 @@ function App() {
 
   useEffect(() => {
     // load playlist.json so you can add tracks without code changes
-    fetch('/media/playlist.json')
+    fetch(publicUrl('/media/playlist.json'))
       .then((r) => r.json())
       .then((data) => {
         if (data && Array.isArray(data.tracks) && data.tracks.length > 0) {
@@ -75,7 +87,7 @@ function App() {
     setNoAnim(true);
     const track = playlist[index % playlist.length];
     const a = audioRef.current;
-    a.src = track.src;
+    a.src = publicUrl(track.src);
     a.load();
     setCurrent(0);
     setDuration(0);
@@ -85,6 +97,9 @@ function App() {
   }, [index, playlist]);
 
   const handleChange = (value) => setActiveTab(value);
+
+  const openBlog = (id) => setSelectedBlog(id);
+  const closeBlog = () => setSelectedBlog(null);
 
   const playPause = () => {
     if (!playlist.length) return;
@@ -112,6 +127,7 @@ function App() {
       // restart current
       setNoAnim(true);
       a.currentTime = 0;
+      setCurrent(0);
       if (!playing) {
         a.play().then(() => setPlaying(true)).catch(() => {});
       }
@@ -133,6 +149,41 @@ function App() {
 
   const percent = duration ? Math.min(100, (current / duration) * 100) : 0;
 
+  // load blog index
+  useEffect(() => {
+    setBlogLoading(true);
+    setBlogError(null);
+    fetch(publicUrl('/blog/posts.json'))
+      .then((r) => {
+        if (!r.ok) throw new Error('failed to load posts');
+        return r.json();
+      })
+      .then((data) => {
+        if (data && Array.isArray(data.posts)) {
+          setBlogPosts(data.posts);
+        } else {
+          setBlogPosts([]);
+        }
+      })
+      .catch((e) => setBlogError(e.message || 'error'))
+      .finally(() => setBlogLoading(false));
+  }, []);
+
+  // load post body when selected
+  useEffect(() => {
+    if (selectedBlog === null) {
+      setPostBody('');
+      return;
+    }
+    const post = blogPosts.find((p) => p.id === selectedBlog);
+    if (!post || !post.body) return;
+    setPostLoading(true);
+    fetch(publicUrl(post.body))
+      .then((r) => r.text())
+      .then((txt) => setPostBody(txt))
+      .finally(() => setPostLoading(false));
+  }, [selectedBlog, blogPosts]);
+
   return (
     <div className="appRoot">
       <div className="windowWrap">
@@ -141,21 +192,115 @@ function App() {
           <WindowContent style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
             <Tabs value={activeTab} onChange={handleChange}>
               <Tab value={0}>about</Tab>
-              <Tab value={1}>music</Tab>
+              <Tab value={1}>blog</Tab>
+              <Tab value={2}>music</Tab>
             </Tabs>
             <TabBody style={{ flex: 1, overflow: 'hidden' }}>
               {activeTab === 0 && (
-                <div className="stack">
-                  <div>about me content goes here.</div>
-                  <div>placeholder text for the about tab.</div>
+                <div className="aboutWrap">
+                  <div className="stack">
+                    <div>
+                      i'm benjamin and i'm a final year engineering student at the{' '}
+                      <Tooltip text="engineering science!" enterDelay={100} leaveDelay={0}>
+                      <Anchor href="https://www.utoronto.ca" target="_blank" rel="noreferrer noopener">university of toronto</Anchor>
+                      </Tooltip>
+                    </div>
+                    <div>
+                      i've worked at companies like{' '}
+                      <Tooltip text="data science intern!" enterDelay={100} leaveDelay={0}>
+                        <Anchor href="https://asana.com" target="_blank" rel="noreferrer noopener">asana</Anchor>
+                      </Tooltip>
+                      ,{' '}
+                      <Tooltip text="ml intern!" enterDelay={100} leaveDelay={0}>
+                        <Anchor href="https://www.mozilla.org" target="_blank" rel="noreferrer noopener">mozilla</Anchor>
+                      </Tooltip>
+                      ,{' '}
+                      <Tooltip text="data specialist!" enterDelay={100} leaveDelay={0}>
+                        <Anchor href="https://cohere.com" target="_blank" rel="noreferrer noopener">cohere</Anchor>
+                      </Tooltip>
+                      , and{' '}
+                      <Tooltip text="ml intern!" enterDelay={100} leaveDelay={0}>
+                        <Anchor href="https://www.rbc.com" target="_blank" rel="noreferrer noopener">rbc</Anchor>
+                      </Tooltip>
+                    </div>
+                    <div>
+                      in my free time, i like to collect records, journal, and sleeping (zzz)
+                    </div>
+                  </div>
+                  <div style={{ marginTop: 'auto' }}>
+                    <GroupBox label="contact me">
+                      <div className="iconsRow">
+                        <Anchor href="#" title="LinkedIn" rel="noreferrer noopener" target="_blank">
+                          <img className="icon24 shrink80" src={LinkedInSvg} alt="LinkedIn" />
+                        </Anchor>
+                        <Anchor href="#" title="GitHub" rel="noreferrer noopener" target="_blank">
+                          <img className="icon24" src={GithubSvg} alt="GitHub" />
+                        </Anchor>
+                        <Anchor href="#" title="Spotify" rel="noreferrer noopener" target="_blank">
+                          <img className="icon24" src={MusicLibSvg} alt="Spotify" />
+                        </Anchor>
+                        <Anchor href="mailto:someone@example.com" title="Email">
+                          <img className="icon24" src={MailSvg} alt="Email" />
+                        </Anchor>
+                        <Anchor href="#" title="Resume" rel="noreferrer noopener" target="_blank">
+                          <img className="icon24" src={FileSvg} alt="Resume" />
+                        </Anchor>
+                      </div>
+                    </GroupBox>
+                  </div>
                 </div>
               )}
               {activeTab === 1 && (
+                <div className="stack">
+                  {selectedBlog === null ? (
+                    <div>
+                      {blogLoading && <div>loading…</div>}
+                      {blogError && <div>error: {blogError}</div>}
+                      {blogPosts.map((p) => (
+                        <div key={p.id}>
+                          <Anchor href="#" onClick={(e) => { e.preventDefault(); openBlog(p.id); }}>
+                            {p.date} — {p.title}
+                          </Anchor>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    (() => {
+                      const post = blogPosts.find((bp) => bp.id === selectedBlog);
+                      if (!post) return null;
+                      return (
+                        <div className="stack" style={{ height: '100%' }}>
+                          <div className="row">
+                            <Button onClick={closeBlog}>Back</Button>
+                            <strong style={{ marginLeft: 8 }}>{post.title}</strong>
+                          </div>
+                          <div style={{ flex: 1, minHeight: 0 }}>
+                            <div
+                              style={{
+                                padding: '1rem',
+                                height: '100%',
+                                maxHeight: '320px',
+                                overflowY: 'auto',
+                                background: '#fff',
+                                border: '2px inset #ccc',
+                                borderRadius: 2,
+                              }}
+                            >
+                              <div style={{ whiteSpace: 'pre-wrap' }}>{postLoading ? 'loading…' : postBody}</div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })()
+                  )}
+                </div>
+              )}
+              {activeTab === 2 && (
                 <div className="musicCenter">
                   <div className="artArea">
                     <img
                       className="albumArtHuge"
-                      src={playlist[index]?.cover || '/media/albums/default.svg'}
+                      src={publicUrl(playlist[index]?.cover || '/media/albums/default.svg')}
                       alt={playlist[index]?.title ? `${playlist[index].title} cover` : 'album cover'}
                     />
                   </div>
@@ -174,7 +319,7 @@ function App() {
                         </Button>
                       </div>
                       <div className="controlsRight">
-                        <div style={{ flex: 1, minWidth: 120 }}>
+                        <div style={{ width: 180 }}>
                           <div className="progressOuter">
                             <div className={`progressInner ${noAnim ? 'noAnim' : ''}`} style={{ transform: `scaleX(${(percent || 0) / 100})` }} />
                           </div>
@@ -196,6 +341,14 @@ function App() {
 }
 
 export default App;
+
+function publicUrl(p) {
+  const base = process.env.PUBLIC_URL || '';
+  if (!p) return '';
+  if (/^https?:\/\//i.test(p)) return p;
+  if (p.startsWith('/')) return `${base}${p}`;
+  return `${base}/${p}`;
+}
 
 function formatTime(sec) {
   if (!sec || !isFinite(sec)) return '0:00';
