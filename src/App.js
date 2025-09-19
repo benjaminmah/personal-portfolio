@@ -294,25 +294,29 @@ function App() {
                   <div className="stack">
                     <div>
                       i'm benjamin and i'm a final year engineering student at the{' '}
-                      <Tooltip text="engineering science!" enterDelay={100} leaveDelay={0}>
+                      <Tooltip text="engineering science" enterDelay={100} leaveDelay={0}>
                       <Anchor href="https://www.utoronto.ca" target="_blank" rel="noreferrer noopener">university of toronto</Anchor>
+                      </Tooltip>
+                      ,{' '}currently doing research at the{' '}
+                      <Tooltip text="third space group" enterDelay={100} leaveDelay={0}>
+                        <Anchor href="https://dgp.toronto.edu" target="_blank" rel="noreferrer noopener">DGP lab</Anchor>
                       </Tooltip>
                     </div>
                     <div>
                       i've worked at companies like{' '}
-                      <Tooltip text="data science intern!" enterDelay={100} leaveDelay={0}>
+                      <Tooltip text="data science intern" enterDelay={100} leaveDelay={0}>
                         <Anchor href="https://asana.com" target="_blank" rel="noreferrer noopener">asana</Anchor>
                       </Tooltip>
                       ,{' '}
-                      <Tooltip text="ml intern!" enterDelay={100} leaveDelay={0}>
+                      <Tooltip text="ml intern" enterDelay={100} leaveDelay={0}>
                         <Anchor href="https://www.mozilla.org" target="_blank" rel="noreferrer noopener">mozilla</Anchor>
                       </Tooltip>
                       ,{' '}
-                      <Tooltip text="data specialist!" enterDelay={100} leaveDelay={0}>
+                      <Tooltip text="data specialist" enterDelay={100} leaveDelay={0}>
                         <Anchor href="https://cohere.com" target="_blank" rel="noreferrer noopener">cohere</Anchor>
                       </Tooltip>
                       , and{' '}
-                      <Tooltip text="ml intern!" enterDelay={100} leaveDelay={0}>
+                      <Tooltip text="ml intern" enterDelay={100} leaveDelay={0}>
                         <Anchor href="https://www.rbc.com" target="_blank" rel="noreferrer noopener">rbc</Anchor>
                       </Tooltip>
                     </div>

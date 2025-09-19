@@ -214,7 +214,7 @@
   width: 100%;
   height: 10px;
   background: var(--progress-bg, #ffffff);
-  border: 1px solid var(--progress-border, #000);
+  border: 2px solid var(--progress-border, #000);
   overflow: hidden;
 }
 .progressInner {
