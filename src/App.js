@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import './App.css';
 import { ThemeProvider } from 'styled-components';
 import original from 'react95/dist/themes/original';
@@ -19,6 +19,8 @@ import { ReactComponent as MailIcon } from 'pixelarticons/svg/mail.svg';
 import { ReactComponent as FileIcon } from 'pixelarticons/svg/file-alt.svg';
 
 function App() {
+  // Adjust this number to control pixelation strength (1 = off, 2+ = more blocky)
+  const pixelate = 2;
   const [activeTab, setActiveTab] = useState(0);
   const [smallScreen, setSmallScreen] = useState(() => {
     if (typeof window === 'undefined') return false;
@@ -422,11 +424,11 @@ function App() {
                 <div className="musicCenter">
                   <div className="artArea">
                       <Avatar square size={250}>
-                      <img
-                        className="albumArtHuge"
-                        src={publicUrl(playlist[index]?.cover || '/media/albums/default.svg')}
-                        alt={playlist[index]?.title ? `${playlist[index].title} cover` : 'album cover'}
-                      />
+                        <PixelateImage
+                          src={publicUrl(playlist[index]?.cover || '/media/albums/default.svg')}
+                          alt={playlist[index]?.title ? `${playlist[index].title} cover` : 'album cover'}
+                          factor={pixelate}
+                        />
                       </Avatar>
                   </div>
                   <div className="bottomArea">
@@ -441,7 +443,9 @@ function App() {
                           </div>
                         </div>
                         <div className="timeText">
-                          {formatTime(displaySec)} / {formatTime(duration)}
+                          <span className="current" aria-label="elapsed time">{formatTime(displaySec)}</span>
+                          <span className="sep"> / </span>
+                          <span className="total" aria-label="total time">{formatTime(duration)}</span>
                         </div>
                       </div>
                       <div className="controlsLeft">
@@ -497,6 +501,110 @@ function publicUrl(p) {
   if (/^https?:\/\//i.test(p)) return p;
   if (p.startsWith('/')) return `${base}${p}`;
   return `${base}/${p}`;
+}
+
+// Renders an image pixelated at a controllable factor without changing size
+function PixelateImage({ src, alt, factor = 1 }) {
+  const wrapRef = useRef(null);
+  const canvasRef = useRef(null);
+  const imgRef = useRef(null);
+  const drawRef = useRef(() => {});
+
+  // Load image element
+  useEffect(() => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    imgRef.current = img;
+    let cancelled = false;
+    img.onload = () => {
+      if (!cancelled && drawRef.current) drawRef.current();
+    };
+    img.src = src;
+    return () => { cancelled = true; };
+  }, [src]);
+
+  // Drawing routine (memoized so effects can safely depend on it)
+  const draw = useCallback(() => {
+    const canvas = canvasRef.current;
+    const wrap = wrapRef.current;
+    const img = imgRef.current;
+    if (!canvas || !wrap || !img || !img.complete) return;
+
+    const rect = wrap.getBoundingClientRect();
+    const cw = Math.max(1, Math.floor(rect.width));
+    const ch = Math.max(1, Math.floor(rect.height));
+
+    // Set canvas to final display size
+    canvas.width = cw;
+    canvas.height = ch;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    // Disable smoothing for crisp pixels
+    ctx.imageSmoothingEnabled = false;
+
+    // Compute draw size for the low-res step; factor>=1
+    const f = Math.max(1, Math.floor(factor));
+    const dw = Math.max(1, Math.floor(cw / f));
+    const dh = Math.max(1, Math.floor(ch / f));
+
+    // Cover behavior: fit image to canvas while preserving aspect ratio
+    const imgRatio = img.naturalWidth / img.naturalHeight;
+    const targetRatio = dw / dh;
+    let sw, sh, sx, sy;
+    if (imgRatio > targetRatio) {
+      // Image is wider; crop sides
+      sh = img.naturalHeight;
+      sw = Math.floor(sh * targetRatio);
+      sx = Math.floor((img.naturalWidth - sw) / 2);
+      sy = 0;
+    } else {
+      // Image is taller; crop top/bottom
+      sw = img.naturalWidth;
+      sh = Math.floor(sw / targetRatio);
+      sx = 0;
+      sy = Math.floor((img.naturalHeight - sh) / 2);
+    }
+
+    // Draw low-res to an offscreen canvas, then scale up to final canvas
+    const off = document.createElement('canvas');
+    off.width = dw;
+    off.height = dh;
+    const octx = off.getContext('2d');
+    if (!octx) return;
+    octx.imageSmoothingEnabled = false;
+    octx.drawImage(img, sx, sy, sw, sh, 0, 0, dw, dh);
+
+    // Now draw scaled up with smoothing off
+    ctx.clearRect(0, 0, cw, ch);
+    ctx.drawImage(off, 0, 0, dw, dh, 0, 0, cw, ch);
+  }, [factor]);
+
+  // Keep a ref to the latest draw function so image onload can call it without adding as a dep
+  useEffect(() => {
+    drawRef.current = draw;
+  }, [draw]);
+
+  // Redraw on factor change
+  useEffect(() => {
+    draw();
+  }, [draw]);
+
+  // Redraw on container resize
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(() => draw());
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [draw]);
+
+  return (
+    <div ref={wrapRef} style={{ width: '100%', height: '100%' }}>
+      {/* Canvas acts as the image. Provide alt via aria-label. */}
+      <canvas ref={canvasRef} role="img" aria-label={alt || ''} style={{ width: '100%', height: '100%', display: 'block' }} />
+    </div>
+  );
 }
 
 function formatTime(sec) {

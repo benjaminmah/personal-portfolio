@@ -23,6 +23,12 @@
       "title": "flash forward",
       "artist": "le sserafim",
       "cover": "/media/albums/flashforward.jpg"
+    },
+    {
+      "src": "/media/tracks/congratulations.mp3",
+      "title": "congratulations",
+      "artist": "mac miller",
+      "cover": "/media/albums/congratulations.png"
     }
   ]
 }
