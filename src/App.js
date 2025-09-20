@@ -33,13 +33,8 @@ function App() {
     { key: 'vaporwave', label: 'pacific', theme: vaporTeal },
     { key: 'matcha', label: 'matcha', theme: spruce },
   ];
-  const [themeKey, setThemeKey] = useState(() => {
-    try {
-      return localStorage.getItem('themeKey') || 'original';
-    } catch {
-      return 'original';
-    }
-  });
+  // Always start with the default theme; do not persist between sessions
+  const [themeKey, setThemeKey] = useState('original');
   const currentTheme = themeOptions.find(t => t.key === themeKey)?.theme || original;
 
   // Sync CRT-style background with selected theme
@@ -479,7 +474,6 @@ function App() {
                         checked={themeKey === opt.key}
                         onChange={() => {
                           setThemeKey(opt.key);
-                          try { localStorage.setItem('themeKey', opt.key); } catch {}
                         }}
                       />
                     ))}
