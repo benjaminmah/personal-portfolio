@@ -35,6 +35,12 @@
       "title": "on melancholy hill",
       "artist": "gorillaz",
       "cover": "/media/albums/onmelancholyhill.jpeg"
+    },
+    {
+      "src": "/media/tracks/ghosttown.mp3",
+      "title": "ghost town",
+      "artist": "kanye west",
+      "cover": "/media/albums/ghosttown.jpg"
     }
   ]
 }
