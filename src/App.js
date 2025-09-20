@@ -381,7 +381,7 @@ function App() {
                       {blogPosts.map((p) => (
                         <div key={p.id}>
                           <Anchor href="#" onClick={(e) => { e.preventDefault(); openBlog(p.id); }}>
-                            {p.date} — {p.title}
+                            {p.date} -- {p.title}
                           </Anchor>
                         </div>
                       ))}

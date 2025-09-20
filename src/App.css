@@ -1,10 +1,18 @@
 /* Minimal layout utilities for centering the React95 window */
+html, body, #root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  overflow: hidden; /* lock page from scrolling */
+}
 
 .appRoot {
-  min-height: 100vh;
+  height: 100vh;
   display: grid;
   place-items: center;
-  padding: 16px;
+  padding: 0;
+  overflow: hidden;
 }
 
 .windowWrap {
