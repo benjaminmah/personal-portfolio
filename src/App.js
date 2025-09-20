@@ -112,7 +112,12 @@ function App() {
       setDuration(audio.duration || 0);
       setNoAnim(false);
     };
-    const onEnded = () => setIndex((i) => i + 1);
+    const onEnded = () => {
+      // Advance to next track and keep playback going
+      setIndex((i) => i + 1);
+      setNoAnim(true);
+      setPlaying(true);
+    };
     audio.addEventListener('loadedmetadata', onLoaded);
     audio.addEventListener('ended', onEnded);
     return () => {
@@ -129,17 +134,28 @@ function App() {
     const a = audioRef.current;
     a.src = publicUrl(track.src);
     a.load();
-    
+    // If we were playing, ensure the next track starts immediately (and retry on canplay)
+    if (playing) {
+      a.play().catch(() => {
+        const onCanPlay = () => {
+          a.play().catch(() => {});
+          a.removeEventListener('canplay', onCanPlay);
+        };
+        a.addEventListener('canplay', onCanPlay);
+      });
+    }
+
     setDuration(0);
     setDisplaySec(0);
-  }, [index, playlist]);
+  }, [index, playlist, playing]);
 
   // control playback when 'playing' changes (or when new src is set)
   useEffect(() => {
     const a = audioRef.current;
     if (!a) return;
     if (playing) {
-      a.play().catch(() => setPlaying(false));
+      // Don't flip to paused on transient play() errors
+      a.play().catch(() => {});
     } else {
       a.pause();
     }
@@ -270,6 +286,9 @@ function App() {
     '--bevel-dark': currentTheme.borderDark,
     '--bevel-darkest': currentTheme.borderDarkest,
   };
+
+  // Compute a safe index into playlist to avoid undefined when index grows past bounds
+  const safeIndex = playlist.length > 0 ? ((index % playlist.length) + playlist.length) % playlist.length : 0;
 
   if (smallScreen) {
     return (
@@ -425,15 +444,15 @@ function App() {
                   <div className="artArea">
                       <Avatar square size={250}>
                         <PixelateImage
-                          src={publicUrl(playlist[index]?.cover || '/media/albums/default.svg')}
-                          alt={playlist[index]?.title ? `${playlist[index].title} cover` : 'album cover'}
+                          src={publicUrl(playlist[safeIndex]?.cover || '/media/albums/default.svg')}
+                          alt={playlist[safeIndex]?.title ? `${playlist[safeIndex].title} cover` : 'album cover'}
                           factor={pixelate}
                         />
                       </Avatar>
                   </div>
                   <div className="bottomArea">
                     <div className="marqueeBox">
-                      <Marquee text={`${playlist[index]?.title || 'Unknown Title'} - ${playlist[index]?.artist || 'Unknown Artist'}`} />
+                      <Marquee text={`${playlist[safeIndex]?.title || 'Unknown Title'} - ${playlist[safeIndex]?.artist || 'Unknown Artist'}`} />
                     </div>
                     <div className="controlsBlock">
                       <div className="progressRow">
