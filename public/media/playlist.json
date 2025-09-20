@@ -29,6 +29,12 @@
       "title": "congratulations",
       "artist": "mac miller",
       "cover": "/media/albums/congratulations.png"
+    },
+    {
+      "src": "/media/tracks/onmelancholyhill.mp3",
+      "title": "on melancholy hill",
+      "artist": "gorillaz",
+      "cover": "/media/albums/onmelancholyhill.jpeg"
     }
   ]
 }
