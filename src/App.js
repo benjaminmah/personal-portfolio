@@ -17,6 +17,7 @@ import { ReactComponent as GithubIcon } from 'pixelarticons/svg/github.svg';
 import { ReactComponent as MusicIcon } from 'pixelarticons/svg/music.svg';
 import { ReactComponent as MailIcon } from 'pixelarticons/svg/mail.svg';
 import { ReactComponent as FileIcon } from 'pixelarticons/svg/file-alt.svg';
+import { ReactComponent as ReplyIcon } from 'pixelarticons/svg/reply.svg';
 
 function App() {
   // Adjust this number to control pixelation strength (1 = off, 2+ = more blocky)
@@ -63,6 +64,7 @@ function App() {
   const [blogError, setBlogError] = useState(null);
   const [selectedBlog, setSelectedBlog] = useState(null); // id or null
   const [postBody, setPostBody] = useState('');
+  const [postIsMarkdown, setPostIsMarkdown] = useState(false);
   const [postLoading, setPostLoading] = useState(false);
   // playlist
   const [playlist, setPlaylist] = useState([]);
@@ -246,10 +248,12 @@ function App() {
   useEffect(() => {
     if (selectedBlog === null) {
       setPostBody('');
+      setPostIsMarkdown(false);
       return;
     }
     const post = blogPosts.find((p) => p.id === selectedBlog);
     if (!post || !post.body) return;
+    setPostIsMarkdown(/\.md(\?|#|$)/i.test(post.body));
     setPostLoading(true);
     fetch(publicUrl(post.body))
       .then((r) => r.text())
@@ -389,7 +393,7 @@ function App() {
                       {blogPosts.map((p) => (
                         <div key={p.id}>
                           <Anchor href="#" onClick={(e) => { e.preventDefault(); openBlog(p.id); }}>
-                            {p.date} -- {p.title}
+                            {p.date} - {p.title}
                           </Anchor>
                         </div>
                       ))}
@@ -401,8 +405,10 @@ function App() {
                       return (
                         <div className="stack" style={{ height: '100%' }}>
                           <div className="row">
-                            <Button onClick={closeBlog}>back</Button>
-                            <strong style={{ marginLeft: 8, fontWeight: 'bold'}}>{post.title}</strong>
+                            <Button onClick={closeBlog} aria-label="Back">
+                              <ReplyIcon className="icon24Svg" />
+                            </Button>
+                            <strong style={{ marginLeft: 4}}>{post.title}</strong>
                           </div>
                           <div style={{ flex: 1, minHeight: 0 }}>
 
@@ -415,7 +421,13 @@ function App() {
                                 overflowY: 'auto',
                               }}
                             >
-                              <div style={{ whiteSpace: 'pre-wrap' }}>{postLoading ? 'loading…' : postBody}</div>
+                              {postLoading ? (
+                                <div>loading…</div>
+                              ) : postIsMarkdown ? (
+                                <div className="markdownBody" dangerouslySetInnerHTML={{ __html: markdownToHtml(postBody) }} />
+                              ) : (
+                                <div style={{ whiteSpace: 'pre-wrap' }}>{postBody}</div>
+                              )}
                             </div>
                             </ScrollView>
                             </Frame>
@@ -509,6 +521,56 @@ function publicUrl(p) {
   if (/^https?:\/\//i.test(p)) return p;
   if (p.startsWith('/')) return `${base}${p}`;
   return `${base}/${p}`;
+}
+
+// Very small Markdown -> HTML converter supporting common basics.
+// Supports: headings (# to ######), bold **text**, italics *text*, inline code `code`,
+// links [text](url), images ![alt](url), and paragraphs/line breaks.
+function markdownToHtml(md) {
+  if (!md) return '';
+  // Escape HTML first to avoid unintended HTML injection from markdown source
+  const esc = (s) => s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+  let txt = esc(md);
+
+  // Images: ![alt](url)
+  txt = txt.replace(/!\[(.*?)\]\((.*?)\)/g, (_m, alt, url) => {
+    const u = typeof url === 'string' && url.startsWith('/') ? publicUrl(url) : url;
+    const a = alt || '';
+    return `<img src="${u}" alt="${a}" style="max-width:100%; height:auto;" />`;
+  });
+
+  // Links: [text](url)
+  txt = txt.replace(/\[(.*?)\]\((.*?)\)/g, (_m, label, url) => {
+    const u = typeof url === 'string' && url.startsWith('/') ? publicUrl(url) : url;
+    const l = label || u || '';
+    return `<a href="${u}" target="_blank" rel="noreferrer noopener">${l}</a>`;
+  });
+
+  // Headings: ###### down to # at line start
+  txt = txt.replace(/^#{6}\s+(.*)$/gm, '<h6>$1</h6>')
+           .replace(/^#{5}\s+(.*)$/gm, '<h5>$1</h5>')
+           .replace(/^#{4}\s+(.*)$/gm, '<h4>$1</h4>')
+           .replace(/^#{3}\s+(.*)$/gm, '<h3>$1</h3>')
+           .replace(/^#{2}\s+(.*)$/gm, '<h2>$1</h2>')
+           .replace(/^#\s+(.*)$/gm, '<h1>$1</h1>');
+
+  // Inline code: `code`
+  txt = txt.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+  // Emphasis: handle bold/italics using asterisks and underscores
+  // Bold first to avoid greedily matching inside italics
+  txt = txt.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'); // **bold**
+  txt = txt.replace(/__(.+?)__/g, '<strong>$1</strong>');       // __bold__
+  txt = txt.replace(/(?<!_)_(.+?)_(?!_)/g, '<em>$1</em>');      // _italics_
+  txt = txt.replace(/(?<!\*)\*(.+?)\*(?!\*)/g, '<em>$1</em>'); // *italics*
+
+  // Convert double newlines to paragraphs, single newline to <br/>
+  // Split by two or more newlines
+  const blocks = txt.split(/\n{2,}/).map(b => b.replace(/\n/g, '<br/>'));
+  return blocks.map(b => `<p>${b}</p>`).join('');
 }
 
 // Renders an image pixelated at a controllable factor without changing size

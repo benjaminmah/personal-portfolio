@@ -221,6 +221,34 @@ body {
   animation: marqueeSlide var(--scroll-time, 6s) linear infinite;
 }
 
+/* Basic styling for markdown-rendered blog posts */
+.markdownBody h1, .markdownBody h2, .markdownBody h3,
+.markdownBody h4, .markdownBody h5, .markdownBody h6 {
+  margin: 0.5rem 0 0.25rem;
+}
+.markdownBody p {
+  margin: 0.5rem 0;
+}
+.markdownBody a {
+  color: inherit;
+  text-decoration: underline;
+}
+.markdownBody img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0.5rem auto; /* center horizontally */
+}
+.markdownBody code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  background: rgba(0,0,0,0.08);
+  padding: 0 3px;
+  border-radius: 2px;
+}
+/* Ensure emphasis renders clearly */
+.markdownBody strong { font-weight: bold; }
+.markdownBody em { font-style: italic; }
+
 /* Center title/artist when not scrolling */
 .marqueeWrap.centered {
   text-align: center;
