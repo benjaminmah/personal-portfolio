@@ -134,20 +134,9 @@ function App() {
     const a = audioRef.current;
     a.src = publicUrl(track.src);
     a.load();
-    // If we were playing, ensure the next track starts immediately (and retry on canplay)
-    if (playing) {
-      a.play().catch(() => {
-        const onCanPlay = () => {
-          a.play().catch(() => {});
-          a.removeEventListener('canplay', onCanPlay);
-        };
-        a.addEventListener('canplay', onCanPlay);
-      });
-    }
-
     setDuration(0);
     setDisplaySec(0);
-  }, [index, playlist, playing]);
+  }, [index, playlist]);
 
   // control playback when 'playing' changes (or when new src is set)
   useEffect(() => {
