@@ -1,6 +1,12 @@
 {
   "posts": [
     {
+      "id": 1,
+      "title": "showing up for myself",
+      "date": "2026-05-02",
+      "body": "/blog/posts/showing-up-for-myself.md"
+    },
+    {
       "id": 0,
       "title": "three lessons from my summer abroad",
       "date": "2025-09-20",

@@ -1,0 +1,7 @@
+there's something i've been sitting with lately, the fact that i gave a lot of myself away. not dramatically, but slowly, over time, adjusting and performing until i wasn't really sure which parts of me were actually me.
+
+i'm in the middle of figuring that out. i have some medical things to deal with over the summer, and a big move after that. so this season of my life has this in-between quality, almost like standing in a doorway, not here but not quite there either. and instead of forcing myself through it, i've been trying to enjoy it. i visited a friend in nyc recently. i've been making more of an effort to show up for people i care about, in person. i've been doing the small things too. started playing animal crossing again. going for walks. showing up for myself in ways i'd stopped bothering with.
+
+the bigger thing i've been trying to phase out is the performing. i used to adjust what i said, how i acted, and what i let myself care about depending on who was around. it's exhausting, and others can tell when you're not being real. more importantly, i can tell.
+
+i'm learning that my own presence is worth something, that i don't need to earn my place in the world by being agreeable or easy. i can just be here, as i am. and while not everyone will be into it, the right people always are :>
