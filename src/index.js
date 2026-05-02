@@ -33,6 +33,8 @@ const GlobalStyles = createGlobalStyle`
     background-color: #0b1226; /* deep navy base (overridden in App) */
     color: #000;
     font-family: 'ms_sans_serif', Arial, sans-serif;
+    /* Makes fonts appear bolder on Windows (ClearType renders thinner than Mac) */
+    text-shadow: 0 0 0.5px currentColor;
   }
 
   @keyframes crtScan {
@@ -57,6 +59,12 @@ const GlobalStyles = createGlobalStyle`
       rgba(0, 0, 0, 0) 4px
     );
     animation: crtScan 0.6s linear infinite, crtFlicker 3.2s ease-in-out infinite;
+  }
+
+  @media (max-width: 600px) {
+    html {
+      font-size: 13px;
+    }
   }
 `;
 

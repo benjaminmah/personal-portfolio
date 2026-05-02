@@ -21,6 +21,17 @@ body {
   height: var(--size);
 }
 
+@media (max-width: 600px) {
+  .windowWrap {
+    width: min(96vw, 520px);
+    height: min(75vh, 520px);
+    --size: min(96vw, 520px);
+  }
+  .timeText {
+    display: none;
+  }
+}
+
 .stack {
   display: flex;
   flex-direction: column;
@@ -311,4 +322,112 @@ body {
 
 .spacer {
   height: 8px;
+}
+
+/* Tabs horizontal scroll on small screens */
+.tabsScroll {
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex-shrink: 0;
+}
+.tabsScroll::-webkit-scrollbar { display: none; }
+
+/* Visitor card tab */
+.visitorWrap {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.visitorSignWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.visitorGreet {
+  font-size: 13px;
+}
+
+.visitorPrompt {
+  font-size: 11px;
+  opacity: 0.75;
+}
+
+.visitorInputRow {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.visitorInputRow input {
+  flex: 1;
+}
+
+.visitorCardWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.visitorCardBody {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  min-height: 80px;
+}
+
+.visitorDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.visitorStamp {
+  width: 68px;
+  height: 68px;
+  border: 3px solid #c00;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #c00;
+  flex-shrink: 0;
+  transform: rotate(-15deg) scale(0.3);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.visitorStamp.stamped {
+  animation: stampDown 0.35s ease-out forwards;
+}
+
+@keyframes stampDown {
+  0%   { transform: rotate(-15deg) scale(2.2); opacity: 0; }
+  55%  { transform: rotate(-15deg) scale(0.88); opacity: 0.92; }
+  100% { transform: rotate(-15deg) scale(1);   opacity: 0.82; }
+}
+
+/* Papers (publications) tab */
+.papersWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 2px 0;
+}
+
+.paperEntry {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.paperMeta {
+  font-size: 11px;
+  opacity: 0.7;
 }

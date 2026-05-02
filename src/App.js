@@ -25,7 +25,7 @@ function App() {
   const [activeTab, setActiveTab] = useState(0);
   const [smallScreen, setSmallScreen] = useState(() => {
     if (typeof window === 'undefined') return false;
-    return window.innerWidth < 600 || window.innerHeight < 600;
+    return window.innerWidth < 320 || window.innerHeight < 320;
   });
   // theme
   const themeOptions = [
@@ -219,7 +219,7 @@ function App() {
   // load blog index
   useEffect(() => {
     const onResize = () => {
-      setSmallScreen(window.innerWidth < 600 || window.innerHeight < 600);
+      setSmallScreen(window.innerWidth < 320 || window.innerHeight < 320);
     };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
@@ -310,9 +310,10 @@ function App() {
           <WindowContent style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
             <Tabs value={activeTab} onChange={handleChange}>
               <Tab value={0}>about</Tab>
-              <Tab value={1}>blog</Tab>
-              <Tab value={2}>music</Tab>
-              <Tab value={3}>themes</Tab>
+              <Tab value={1}>papers</Tab>
+              <Tab value={2}>blog</Tab>
+              <Tab value={3}>music</Tab>
+              <Tab value={4}>themes</Tab>
             </Tabs>
             <TabBody style={{ flex: 1, overflow: 'hidden' }}>
               {activeTab === 0 && (
@@ -386,6 +387,20 @@ function App() {
               )}
               {activeTab === 1 && (
                 <div className="stack">
+                  <div>
+                    <Anchor href="https://arxiv.org/abs/2602.11318v2" target="_blank" rel="noreferrer noopener">
+                      FAccT 2026 - The Consensus Trap: Dissecting Subjectivity and the 'Ground Truth' Illusion in Data Annotation
+                    </Anchor>
+                  </div>
+                  <div>
+                    <Anchor href="https://ieeexplore.ieee.org/document/11393512" target="_blank" rel="noreferrer noopener">
+                      IEEE TSE 2026 - Impact of an LLM-based Review Assistant in Practice: A Mixed Open-/Closed-source Case Study
+                    </Anchor>
+                  </div>
+                </div>
+              )}
+              {activeTab === 2 && (
+                <div className="stack">
                   {selectedBlog === null ? (
                     <div>
                       {blogLoading && <div>loading…</div>}
@@ -431,7 +446,6 @@ function App() {
                             </div>
                             </ScrollView>
                             </Frame>
-                            
 
                           </div>
                         </div>
@@ -440,7 +454,7 @@ function App() {
                   )}
                 </div>
               )}
-              {activeTab === 2 && (
+              {activeTab === 3 && (
                 <div className="musicCenter">
                   <div className="artArea">
                       <Avatar square size={250}>
@@ -487,7 +501,7 @@ function App() {
                   </div>
                 </div>
               )}
-              {activeTab === 3 && (
+              {activeTab === 4 && (
                 <div className="stack">
                   <div className="stack">
                     {themeOptions.map((opt) => (
