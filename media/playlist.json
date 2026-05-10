@@ -31,6 +31,12 @@
       "cover": "/media/albums/beingagoodgirlhurts.png"
     },
     {
+      "src": "/media/tracks/gala.mp3",
+      "title": "gala",
+      "artist": "xg",
+      "cover": "/media/albums/gala.jpeg"
+    },
+    {
       "src": "/media/tracks/flashforward.mp3",
       "title": "flash forward",
       "artist": "le sserafim",
