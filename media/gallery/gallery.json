@@ -1,0 +1,20 @@
+{
+  "photos": [
+    {
+      "src": "/media/photos/sunset.jpg",
+      "caption": "kitsilano beach sunset"
+    },
+    {
+      "src": "/media/photos/bridge.jpg",
+      "caption": "brooklyn bridge"
+    },
+    {
+      "src": "/media/photos/w2e.jpg",
+      "caption": "wave to earth"
+    },
+    {
+      "src": "/media/photos/panorama.jpg",
+      "caption": "panorama ridge"
+    }
+  ]
+}
