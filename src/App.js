@@ -20,8 +20,8 @@ import { ReactComponent as FileIcon } from 'pixelarticons/svg/file-alt.svg';
 import { ReactComponent as ReplyIcon } from 'pixelarticons/svg/reply.svg';
 
 function App() {
-  // Adjust this number to control pixelation strength (1 = off, 2+ = more blocky)
   const pixelate = 2;
+  const galleryPixelate = 1.5;
   const [activeTab, setActiveTab] = useState(0);
   const [smallScreen, setSmallScreen] = useState(() => {
     if (typeof window === 'undefined') return false;
@@ -66,6 +66,9 @@ function App() {
   const [postBody, setPostBody] = useState('');
   const [postIsMarkdown, setPostIsMarkdown] = useState(false);
   const [postLoading, setPostLoading] = useState(false);
+  // gallery
+  const [gallery, setGallery] = useState([]);
+  const [galleryIndex, setGalleryIndex] = useState(0);
   // playlist
   const [playlist, setPlaylist] = useState([]);
   const [index, setIndex] = useState(0);
@@ -76,6 +79,15 @@ function App() {
   // displaySec is a clamped, once-per-second counter for retro feel
   const [displaySec, setDisplaySec] = useState(0);
   const [noAnim, setNoAnim] = useState(false);
+
+  useEffect(() => {
+    fetch(publicUrl('/media/gallery/gallery.json'))
+      .then((r) => r.json())
+      .then((data) => {
+        if (data && Array.isArray(data.photos)) setGallery(data.photos);
+      })
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     // load playlist.json so you can add tracks without code changes
@@ -197,6 +209,16 @@ function App() {
     setIndex((i) => (i + 1) % playlist.length);
   };
 
+  const galleryPrev = () => {
+    if (gallery.length === 0) return;
+    setGalleryIndex((i) => (i - 1 + gallery.length) % gallery.length);
+  };
+
+  const galleryNext = () => {
+    if (gallery.length === 0) return;
+    setGalleryIndex((i) => (i + 1) % gallery.length);
+  };
+
   // Stepwise progress (update once per whole second for Win95 feel)
   const percent = duration ? Math.min(100, (displaySec / duration) * 100) : 0;
 
@@ -282,6 +304,7 @@ function App() {
 
   // Compute a safe index into playlist to avoid undefined when index grows past bounds
   const safeIndex = playlist.length > 0 ? ((index % playlist.length) + playlist.length) % playlist.length : 0;
+  const safeGalleryIndex = gallery.length > 0 ? ((galleryIndex % gallery.length) + gallery.length) % gallery.length : 0;
 
   if (smallScreen) {
     return (
@@ -312,8 +335,9 @@ function App() {
               <Tab value={0}>about</Tab>
               <Tab value={1}>papers</Tab>
               <Tab value={2}>blog</Tab>
-              <Tab value={3}>music</Tab>
-              <Tab value={4}>themes</Tab>
+              <Tab value={3}>gallery</Tab>
+              <Tab value={4}>music</Tab>
+              <Tab value={5}>themes</Tab>
             </Tabs>
             <TabBody style={{ flex: 1, overflow: 'hidden' }}>
               {activeTab === 0 && (
@@ -455,6 +479,30 @@ function App() {
                 </div>
               )}
               {activeTab === 3 && (
+                <div className="galleryCenter">
+                  <div className="galleryArtArea">
+                    <Avatar square size={290}>
+                      {gallery.length > 0 ? (
+                        <PixelateImage
+                          src={publicUrl(gallery[safeGalleryIndex]?.src || '')}
+                          alt={gallery[safeGalleryIndex]?.caption || 'photo'}
+                          factor={galleryPixelate}
+                        />
+                      ) : null}
+                    </Avatar>
+                  </div>
+                  <div className="galleryBottom">
+                    <div className="marqueeBox">
+                      <Marquee text={gallery[safeGalleryIndex]?.caption || ''} />
+                    </div>
+                    <div className="galleryControls">
+                      <Button variant='thin' onClick={galleryPrev} onMouseLeave={(e) => e.currentTarget.blur()} aria-label="Previous">prev</Button>
+                      <Button variant='thin' onClick={galleryNext} onMouseLeave={(e) => e.currentTarget.blur()} aria-label="Next">next</Button>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {activeTab === 4 && (
                 <div className="musicCenter">
                   <div className="artArea">
                       <Avatar square size={250}>
@@ -501,7 +549,7 @@ function App() {
                   </div>
                 </div>
               )}
-              {activeTab === 4 && (
+              {activeTab === 5 && (
                 <div className="stack">
                   <div className="stack">
                     {themeOptions.map((opt) => (
@@ -628,7 +676,7 @@ function PixelateImage({ src, alt, factor = 1 }) {
     ctx.imageSmoothingEnabled = false;
 
     // Compute draw size for the low-res step; factor>=1
-    const f = Math.max(1, Math.floor(factor));
+    const f = Math.max(1, factor);
     const dw = Math.max(1, Math.floor(cw / f));
     const dh = Math.max(1, Math.floor(ch / f));
 
