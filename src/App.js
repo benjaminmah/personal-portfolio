@@ -412,7 +412,7 @@ function App() {
               {activeTab === 1 && (
                 <div className="stack">
                   <div>
-                    <Anchor href="https://arxiv.org/abs/2602.11318v2" target="_blank" rel="noreferrer noopener">
+                    <Anchor href="https://arxiv.org/abs/2602.11318v3" target="_blank" rel="noreferrer noopener">
                       FAccT 2026 - The Consensus Trap: Dissecting Subjectivity and the 'Ground Truth' Illusion in Data Annotation
                     </Anchor>
                   </div>
