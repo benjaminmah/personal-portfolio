@@ -121,6 +121,7 @@ function App() {
 
   useEffect(() => {
     const audio = new Audio();
+    audio.volume = 0.8;
     audioRef.current = audio;
     const onLoaded = () => {
       setDuration(audio.duration || 0);
