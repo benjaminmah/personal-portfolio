@@ -1,52 +1,46 @@
 {
   "tracks": [
     {
-      "src": "/media/tracks/promiseoftheworld.mp3",
-      "title": "promise of the world",
-      "artist": "kimura yumi (howl's moving castle ost)",
-      "cover": "/media/albums/promiseoftheworld.jpeg"
+      "src": "/media/tracks/xroom.mp3",
+      "title": "x room",
+      "artist": "xdinary heroes",
+      "cover": "/media/albums/xroom.png"
     },
     {
-      "src": "/media/tracks/lie.mp3",
-      "title": "lie",
+      "src": "/media/tracks/mimi.mp3",
+      "title": "mimi",
+      "artist": "wisp",
+      "cover": "/media/albums/mimi.jpeg"
+    },
+    {
+      "src": "/media/tracks/whenyousleep.mp3",
+      "title": "when you sleep",
+      "artist": "my bloody valentine",
+      "cover": "/media/albums/whenyousleep.png"
+    },
+    {
+      "src": "/media/tracks/allin.mp3",
+      "title": "all in",
       "artist": "pami",
-      "cover": "/media/albums/lie.jpeg"
+      "cover": "/media/albums/allin.jpeg"
     },
     {
-      "src": "/media/tracks/staying.mp3",
-      "title": "staying",
-      "artist": "lizzy mcalpine",
-      "cover": "/media/albums/staying.jpeg"
-    },
-    {
-      "src": "/media/tracks/likearaspberry.mp3",
-      "title": "like a raspberry",
-      "artist": "宇宙ネコ子",
-      "cover": "/media/albums/likearaspberry.jpeg"
-    },
-    {
-      "src": "/media/tracks/beingagoodgirlhurts.mp3",
-      "title": "being a good girl hurts",
-      "artist": "yena",
-      "cover": "/media/albums/beingagoodgirlhurts.png"
-    },
-    {
-      "src": "/media/tracks/gala.mp3",
-      "title": "gala",
+      "src": "/media/tracks/isthislove.mp3",
+      "title": "is this love (piano ver.)",
       "artist": "xg",
-      "cover": "/media/albums/gala.jpeg"
-    },
-    {
-      "src": "/media/tracks/flashforward.mp3",
-      "title": "flash forward",
-      "artist": "le sserafim",
-      "cover": "/media/albums/flashforward.jpg"
+      "cover": "/media/albums/isthislove.jpeg"
     },
     {
       "src": "/media/tracks/toronto2014.mp3",
       "title": "toronto 2014",
       "artist": "daniel caesar",
       "cover": "/media/albums/toronto2014.jpg"
+    },
+    {
+      "src": "/media/tracks/promiseoftheworld.mp3",
+      "title": "promise of the world",
+      "artist": "kimura yumi (howl's moving castle ost)",
+      "cover": "/media/albums/promiseoftheworld.jpeg"
     }
   ]
 }
