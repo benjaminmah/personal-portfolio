@@ -437,6 +437,9 @@ function App() {
                     <div>
                       {blogLoading && <div>loading…</div>}
                       {blogError && <div>error: {blogError}</div>}
+                      {!blogLoading && !blogError && blogPosts.length === 0 && (
+                        <div>coming soon!</div>
+                      )}
                       {blogPosts.map((p) => (
                         <div key={p.id}>
                           <Anchor href="#" onClick={(e) => { e.preventDefault(); openBlog(p.id); }}>
