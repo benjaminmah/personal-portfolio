@@ -8,7 +8,7 @@ import lilac from 'react95/dist/themes/lilac';
 import rose from 'react95/dist/themes/rose';
 import vaporTeal from 'react95/dist/themes/vaporTeal';
 import spruce from 'react95/dist/themes/spruce';
-import { Window, WindowHeader, WindowContent, Tabs, Tab, TabBody, Button, Anchor, GroupBox, Tooltip, ScrollView, Frame, Radio, Avatar, Divider } from 'react95';
+import { Window, WindowHeader, WindowContent, Tabs, Tab, TabBody, Button, Anchor, GroupBox, Tooltip, ScrollView, Frame, Radio, Avatar } from 'react95';
 import { ReactComponent as PlayIcon } from 'pixelarticons/svg/play.svg';
 import { ReactComponent as PauseIcon } from 'pixelarticons/svg/pause.svg';
 import { ReactComponent as PrevIcon } from 'pixelarticons/svg/prev.svg';
