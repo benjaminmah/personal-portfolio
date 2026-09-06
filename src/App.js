@@ -8,7 +8,7 @@ import lilac from 'react95/dist/themes/lilac';
 import rose from 'react95/dist/themes/rose';
 import vaporTeal from 'react95/dist/themes/vaporTeal';
 import spruce from 'react95/dist/themes/spruce';
-import { Window, WindowHeader, WindowContent, Tabs, Tab, TabBody, Button, Anchor, GroupBox, Tooltip, ScrollView, Frame, Radio, Avatar } from 'react95';
+import { Window, WindowHeader, WindowContent, Tabs, Tab, TabBody, Button, Anchor, GroupBox, Tooltip, ScrollView, Frame, Radio, Avatar, Divider } from 'react95';
 import { ReactComponent as PlayIcon } from 'pixelarticons/svg/play.svg';
 import { ReactComponent as PauseIcon } from 'pixelarticons/svg/pause.svg';
 import { ReactComponent as PrevIcon } from 'pixelarticons/svg/prev.svg';
@@ -121,7 +121,7 @@ function App() {
 
   useEffect(() => {
     const audio = new Audio();
-    audio.volume = 0.8;
+    audio.volume = 0.65;
     audioRef.current = audio;
     const onLoaded = () => {
       setDuration(audio.duration || 0);
@@ -345,17 +345,20 @@ function App() {
                 <div className="aboutWrap">
                   <div className="stack">
                     <div>
-                      hey! i'm benjamin and i'm a final year engineering student at the{' '}
-                      <Tooltip text="engineering science" enterDelay={100} leaveDelay={0}>
-                      <Anchor href="https://www.utoronto.ca" target="_blank" rel="noreferrer noopener">university of toronto</Anchor>
-                      </Tooltip>
-                      ,{' '}currently doing research at the{' '}
-                      <Tooltip text="third space group" enterDelay={100} leaveDelay={0}>
-                        <Anchor href="https://dgp.toronto.edu" target="_blank" rel="noreferrer noopener">dgp lab</Anchor>
+                      hey! i'm benjamin (or benji or benny or benson or just ben) and i'm a data scientist at{' '}
+                      <Tooltip text="so cool!" enterDelay={100} leaveDelay={0}>
+                      <Anchor href="https://www.asana.com" target="_blank" rel="noreferrer noopener">asana</Anchor>
                       </Tooltip>
                     </div>
                     <div>
-                      i've worked at companies like{' '}
+                      i recently graduated from the{' '}
+                      <Tooltip text="engineering science" enterDelay={100} leaveDelay={0}>
+                      <Anchor href="https://www.utoronto.ca" target="_blank" rel="noreferrer noopener">university of toronto</Anchor>
+                      </Tooltip>
+                      ,{' '}studying machine learning engineering{' '}
+                    </div>
+                    <div>
+                      i've previously worked at companies like{' '}
                       <Tooltip text="data science intern" enterDelay={100} leaveDelay={0}>
                         <Anchor href="https://asana.com" target="_blank" rel="noreferrer noopener">asana</Anchor>
                       </Tooltip>
@@ -370,6 +373,10 @@ function App() {
                       , and{' '}
                       <Tooltip text="ml intern" enterDelay={100} leaveDelay={0}>
                         <Anchor href="https://www.rbc.com" target="_blank" rel="noreferrer noopener">rbc</Anchor>
+                      </Tooltip>
+                      {' '}(and did research at the{' '}
+                      <Tooltip text="third space group" enterDelay={100} leaveDelay={0}>
+                        <Anchor href="https://www.dgp.toronto.edu" target="_blank" rel="noreferrer noopener">dgp lab)</Anchor>
                       </Tooltip>
                     </div>
                     <div>
