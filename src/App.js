@@ -345,7 +345,7 @@ function App() {
                 <div className="aboutWrap">
                   <div className="stack">
                     <div>
-                      hey! i'm benjamin (or benji or benny or benson or just ben) and i'm a data scientist at{' '}
+                      hey! i'm benjamin and i'm a data scientist at{' '}
                       <Tooltip text="so cool!" enterDelay={100} leaveDelay={0}>
                       <Anchor href="https://www.asana.com" target="_blank" rel="noreferrer noopener">asana</Anchor>
                       </Tooltip>
@@ -374,13 +374,16 @@ function App() {
                       <Tooltip text="ml intern" enterDelay={100} leaveDelay={0}>
                         <Anchor href="https://www.rbc.com" target="_blank" rel="noreferrer noopener">rbc</Anchor>
                       </Tooltip>
-                      {' '}(and did research at the{' '}
+                      {' '}, and I also did research at the{' '}
                       <Tooltip text="third space group" enterDelay={100} leaveDelay={0}>
-                        <Anchor href="https://www.dgp.toronto.edu" target="_blank" rel="noreferrer noopener">dgp lab)</Anchor>
+                        <Anchor href="https://www.dgp.toronto.edu" target="_blank" rel="noreferrer noopener">dgp lab</Anchor>
                       </Tooltip>
                     </div>
                     <div>
                       in my free time, i like to collect records, journal, and sleep (zzz)
+                    </div>
+                    <div>
+                      recently, i've picked up guitar, bouldering, and cafe-hopping :)
                     </div>
                   </div>
                   <div style={{ marginTop: 'auto' }}>
